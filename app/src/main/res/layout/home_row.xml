@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@color/YappingColor"
+android:padding="5dp">
+
+<View android:id="@+id/strut"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_centerHorizontal="true"/>
+
+
+<TextView
+    android:id="@+id/questions"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:text="TextView"
+    android:textStyle="normal"
+    android:minLines="1"
+    android:textColor="@color/White"
+    android:layout_margin="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+<Button
+    android:layout_below="@id/questions"
+    android:id="@+id/checkBox1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="I would like to answer via call"
+
+
+    android:layout_alignParentLeft="true"
+    android:onClick="onCheckBoxClick"
+    android:background="@drawable/rounded"
+    android:layout_margin="5dp"
+    android:textColor="@color/YappingColor"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:paddingLeft="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp" />
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:layout_below="@id/checkBox1"
+    android:layout_alignParentLeft="true"
+
+    android:text="Answer in text"
+    android:layout_alignRight="@id/strut"
+    android:background="@drawable/rounded"
+
+    android:id="@+id/banswerintext"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="2dp"
+    android:padding="5dp"
+    android:textColor="@color/YappingColor" />
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="View answers"
+    android:id="@+id/bViewAnswers"
+    android:clickable="true"
+
+    android:layout_below="@id/checkBox1"
+    android:layout_alignLeft="@id/strut"
+    android:background="@drawable/rounded"
+    android:textColor="@color/YappingColor"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="2dp"
+    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@id/questions"
+    android:text="asker"
+    android:layout_alignParentRight="true"
+    android:gravity="end"
+    android:id="@+id/askername"></TextView>
+
+</RelativeLayout>

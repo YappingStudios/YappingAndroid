@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/YappingColor">
+
+    <TextView
+        android:background="@color/YappingColor"
+        android:textColor="@color/White"
+        android:textSize="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_answers_row_textview"/>
+</RelativeLayout><!-- From: file:/home/srikar/Downloads/21%20Yapping-Master-playstore%20upload%20v-2/app/src/main/res/layout/view_answers_row.xml -->

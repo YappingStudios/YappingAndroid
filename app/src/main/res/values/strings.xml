@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">yAPPING</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="homedata">
+        <item> This best data data have i is like seen the</item>
+        <item> This best data data have i is like seen the</item>
+        <item> This best data data have i is like seen the</item>
+        <item> This best data data have i is like seen the</item>
+        <item> This best data data have i is like seen the</item>
+        <item> This best data data have i is like seen the</item>
+    </string-array>
+    <string-array name="nd">
+        <item> Must Know</item>
+        <item> See All questions</item>
+        <item> My Questions</item>
+        <item> FAQs</item>
+    </string-array>
+
+    <string name="chooseInterests">Select the required items</string>
+    <string name="ok">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string-array name="interests">
+        <item>food</item>
+        <item>travel</item>
+        <item>lifestyle</item>
+        <item>education</item>
+        <item>tech_n_gadgets</item>
+    </string-array>
+
+    <string-array name="FAQQues">
+        <item>What is yAPPING?</item>
+        <item>How to use it?</item>
+        <item>Will my phone number be public?</item>
+        <item>How can I contact my callee again?</item>
+        <item>How do I appreciate you guys?</item>
+    </string-array>
+
+
+    <string-array name="FAQAns">
+        <item>yAPPING is a voice-based experience sharing platform, where you can connect with people(totally unknown to you) who have -been there and done that.Ask whatever you want regarding the five categories, and the person with relevant knowledge will reach out to you.</item>
+        <item>Post your question and choose the category your question falls in.And you shall receive the call!Oh BTW, you people do know that there are no free lunches, right? Just as you are receiving your calls, you are also the caller when a question pertains to your sphere of interest.Basically all the communication is crowd-funded.When you see a question you think you can answer, just click on the answer button.</item>
+        <item>The app does not involve use of phone number at all.It is based on VoIP and works on temporary session keys.</item>
+        <item>You can always exchange numbers and emails while on call.From our side, we feel it is better to keep the caller or calle info private.</item>
+        <item>Share the app! Find the share option in the action bar menu and spread the word! </item>
+    </string-array>
+
+    <string name="share_email_native">yAPPING is available on Playstore! Go ahead and download..</string>
+    <string name="share_email_subject">Spreading yAPPING-An experience sharing platform over voice</string>">
+
+    <string name="share_chooser_text">Share yAPPING over </string>
+    <string name="share_twitter">Spreading yAPPING-An experience sharing platform over voice</string>
+    <string name="share_facebook">Spreading yAPPING-An experience sharing platform over voice</string>
+
+    <string name="share_sms">Spreading yAPPING-An experience sharing platform over voice</string>
+    <string name="share_email_gmail">Spreading yAPPING-An experience sharing platform over voice</string>
+</resources>

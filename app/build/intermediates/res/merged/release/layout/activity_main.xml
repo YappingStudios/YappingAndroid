@@ -1,0 +1,109 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/YappingColor"
+    tools:context="com.yAPPING.yapping.MainActivity" >
+
+    <ImageView
+        android:id="@+id/yapping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/yappinglogo"
+        android:layout_marginTop="5dp" />
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/yapping"
+        android:hint="Enter username"
+        android:inputType="textEmailAddress"
+        android:typeface="serif"
+        android:background="@drawable/rounded"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/YappingColor"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+    </EditText>
+
+
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/etUsername"
+        android:layout_marginTop="19dp"
+        android:hint="Enter password"
+        android:inputType="textPassword"
+        android:typeface="serif"
+        android:background="@drawable/rounded"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/YappingColor"
+        android:paddingLeft="10dp">
+    </EditText>
+
+    <Button
+        android:id="@+id/bSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etPassword"
+
+
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="Sign in"
+        android:textColor="@color/YappingColor"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bSignIn"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp">
+
+        <Button
+            android:id="@+id/createaccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/rounded"
+            android:text="Create Account"
+            android:textColor="@color/YappingColor"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout><!-- From: file:/home/srikar/Downloads/21%20Yapping-Master-playstore%20upload%20v-2/app/src/main/res/layout/activity_main.xml -->

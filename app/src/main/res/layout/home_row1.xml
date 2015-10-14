@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/White"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/questionsdrawer"
+        android:layout_width="250dp"
+        android:clickable="true"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        android:textSize="25dp"
+        android:textStyle="normal"
+        android:minLines="2"/>
+
+    <TextView
+        android:id="@+id/blackborder"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/questionsdrawer"
+        android:background="@color/Black"
+        android:text="" />
+
+
+</RelativeLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:weightSum="5"
+              android:background="@color/YappingColor">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+        <TextView
+                android:id="@+id/remoteUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:text="Sample user"
+                android:textColor="@color/White"
+            android:textSize="30sp" />
+
+        <TextView
+                android:id="@+id/callState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Incoming call"
+                android:textColor="@color/White"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                />
+
+    </LinearLayout>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/yappinglogo"
+            android:padding="0dip"
+            android:layout_weight="2.75"
+            android:contentDescription="Call background"
+        android:background="@color/YappingColor"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+    </ImageView>
+
+    <Button
+            android:id="@+id/answerButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_green"
+        android:layout_weight="0.75"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:text="Answer"
+        android:textColor="#ffffff"
+        android:textSize="30sp" />
+
+    <Button
+                android:id="@+id/declineButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/rounded_red"
+                android:layout_toRightOf="@+id/answerButton"
+        android:layout_weight="0.5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="Decline"
+        android:textSize="20sp"
+        android:textColor="#ffffff" />
+
+</LinearLayout><!-- From: file:/home/srikar/Downloads/21%20Yapping-Master-playstore%20upload%20v-2/app/src/main/res/layout/incoming.xml -->

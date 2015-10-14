@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.view.ViewPager
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/YappingColor"/><!-- From: file:/home/srikar/Downloads/21%20Yapping-Master-playstore%20upload%20v-2/app/src/main/res/layout/must_know.xml -->

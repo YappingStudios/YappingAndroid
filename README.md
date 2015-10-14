@@ -35,3 +35,5 @@ Repaet***13.Must know data presentation bad
 30. Keep a background service running for when app is killed.-Rohit-18 to 20
 31. Tweaking the refresh data on ask pressed -Rohit-HOLD
 32. Notification when question answered.-Srikar
+
+15/10/2015: Starting work on UI Fixes. 

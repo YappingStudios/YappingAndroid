@@ -81,9 +81,28 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
-//        Intent i = new Intent(this,Home.class);
-//        startActivity(i);
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Quit Yapping")
+                .setMessage("Do you want to quit?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //Stop the activity
+                        //System.exit(0);
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+
         System.out.println("Back Pressed");
     }
 

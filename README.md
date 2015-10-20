@@ -9,11 +9,11 @@ Bugs:
 Kahitij: 
 Repeat***6.Logout on back button
 7.Show the most popular answer-3 lines quora click to expand.-Rohit-16
-8.Action bar on top of splash and login, signup - Shibham-14
-9.Navigation bar and logo clickable at the top left, navigation bar not supported. -Shubham-15
-10.At signup we ask for name but we dont tell them this will be their username.-Shubham-16
-11.Click on splash screen not required.-HOLD
-12.And set preferences, the preferences do not reflect in the menu after selection-Shubham-16
+8. Action bar on top of splash and login, signup - Shibham-14
+9. Navigation bar and logo clickable at the top left, navigation bar not supported. -Shubham-15
+10. At signup we ask for name but we dont tell them this will be their username.-Shubham-16
+11. Click on splash screen not required.-HOLD
+12. And set preferences, the preferences do not reflect in the menu after selection-Shubham-16
 -------
 Repaet***13.Must know data presentation bad
 14. Put navigation bar in all scrrens and only button click in scroll tabs-Shubham-15
@@ -32,8 +32,13 @@ Repaet***13.Must know data presentation bad
 27. Change the overall app color scheme.-Shubham-18(Optional)
 28. Edit interests in profile is not working -Srikar
 29. Change how the interests are displayed in the profile page(a comma in the beginnng)-Shubham-18
-30. Keep a background service running for when app is killed.-Rohit-18 to 20
+30.Keep a background service running for when app is killed.-Rohit-18 to 20
 31. Tweaking the refresh data on ask pressed -Rohit-HOLD
 32. Notification when question answered.-Srikar
 
 15/10/2015: Starting work on UI Fixes. 
+
+Rohitt: Agenda for 21/10/15
+
+1,21: Integrate these changes.
+

@@ -30,6 +30,7 @@ public class Splash extends Activity{
             public boolean onTouch(View v, MotionEvent event) {
                 Intent a= new Intent(Splash.this,MainActivity.class);
                 startActivity(a);
+                finish();
                 return false;
             }
         });

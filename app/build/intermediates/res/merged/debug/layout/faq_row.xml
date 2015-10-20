@@ -24,4 +24,4 @@
         android:layout_below="@id/faq_row_ques_textview"
         android:textColor="@color/AntiqueWhite"/>
 </RelativeLayout>
- </ScrollView><!-- From: file:/home/srikar/Downloads/21%20Yapping-Master-playstore%20upload%20v-2/app/src/main/res/layout/faq_row.xml -->
+ </ScrollView><!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/layout/faq_row.xml -->

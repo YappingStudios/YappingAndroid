@@ -104,6 +104,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Sinch
 
                                 Intent i = new Intent(v.getContext(), Home.class);
                                 startActivity(i);
+                                finish();
                             } else {
                                 progressDialog.dismiss();
                                 // Signup failed. Look at the ParseException to see what happened.
@@ -130,7 +131,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Sinch
             if (v.getId() == R.id.createaccount) {
                 Intent i2 = new Intent(v.getContext(), SignUpActivity.class);
                 startActivity(i2);
-
+                //finish();
 
             }
         }

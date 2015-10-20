@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:background="@color/YappingColor"
+android:background="@drawable/rounded_yapp"
 android:padding="5dp">
 
 <View android:id="@+id/strut"
@@ -83,4 +83,52 @@ android:padding="5dp">
     android:gravity="end"
     android:id="@+id/askername"></TextView>
 
-</RelativeLayout><!-- From: file:/home/srikar/Downloads/21%20Yapping-Master-playstore%20upload%20v-2/app/src/main/res/layout/home_row.xml -->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Top Answer"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/banswerintext"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/banswerintext"
+        android:layout_alignEnd="@+id/banswerintext"
+        android:textColor="#fff"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="No Answer"
+        android:id="@+id/answerBy"
+        android:layout_below="@+id/bViewAnswers"
+        android:layout_toRightOf="@+id/strut"
+        android:layout_alignRight="@+id/bViewAnswers"
+        android:layout_alignEnd="@+id/bViewAnswers"
+        android:textColor="#fff"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:ems="10"
+        android:id="@+id/topAnswer"
+        android:background="@drawable/rounded"
+        android:enabled="true"
+
+        android:lines="3"
+        android:layout_below="@+id/textView5"
+        android:layout_alignLeft="@+id/banswerintext"
+        android:layout_alignStart="@+id/banswerintext"
+        android:textColor="@color/YappingColor"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp" />
+
+</RelativeLayout><!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/layout/home_row.xml -->

@@ -43,7 +43,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/bAsk">
+                android:layout_below="@+id/bAsk"
+                android:dividerHeight="5dp"
+                android:divider="@color/White"
+                android:background="@drawable/rounded"
+                android:layout_margin="5dp"
+                android:padding="5dp">
             </ListView>
 
             <Button

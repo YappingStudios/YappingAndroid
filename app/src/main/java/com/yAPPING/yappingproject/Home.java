@@ -77,6 +77,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
      List<Integer> questioncategories;
     private List<String> askerNamesFromParse;
     private ProgressDialog progressDialog;
+    public MyAdapter ad;
 
 
     @Override
@@ -375,7 +376,9 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
             }
         });
 
-        lvcontent.setAdapter(new MyAdapter(stringDataFromParse,askerNamesFromParse));
+
+        ad = new MyAdapter(stringDataFromParse,askerNamesFromParse);
+        lvcontent.setAdapter(ad);
         lvcontent.setOnItemClickListener(new ContentItemListener());
 
     }
@@ -522,12 +525,45 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
     List<String> stringDataFromParse;
     List<String> list;
     List<String> askerNames;
+    List<String> answers;
     private String questionAtPosition;
     public String questionCorresponding;
 //    private String askerNameForPassing;
 
     MyAdapter(List<String> list, List<String> askerNames) {
         this.list = list;
+
+
+        answers=list;
+        for(int i=0;i<list.size();i++){
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("AnswerInText");
+            query.whereEqualTo("question1", list.get(i));
+            final int tempi=i;
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> questionswithsametext, ParseException e) {
+                    if (e == null) {
+//                    Log.d("score", "Retrieved " + scoreList.size() + " scores");
+//                    ParseObject oneOfTheQuestionsWithSameText = questionswithsametext.get(0);
+//                    answers=  oneOfTheQuestionsWithSameText.getString("answers");
+                        int templ=answers.size();
+                        for (int k = 0; k < questionswithsametext.size(); k++) {
+                            ParseObject oneOfTheQuestionsWithSameText = questionswithsametext.get(k);
+                            String oneOfTheQuestionsText = oneOfTheQuestionsWithSameText.getString("answers");
+                            answers.set(tempi, oneOfTheQuestionsText);
+                            //answers.add(oneOfTheQuestionsText);
+                        }
+
+
+//                    answers11.add("hi");
+                    } else {
+                        Log.d("score", "Error: " + e.getMessage());
+                    }
+                }
+            });
+
+        }
+
+
 //        this.askerNames=askerNames;
 
     }
@@ -563,6 +599,7 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
         TextView textView = (TextView) convertView.findViewById(R.id.questions);
         Button answerButton = (Button) convertView.findViewById(R.id.banswerintext);
         TextView askerNameTV = (TextView) convertView.findViewById(R.id.askername);
+        EditText topAnswer = (EditText) convertView.findViewById(R.id.topAnswer);
 
         Button viewAnswers1 = (Button) convertView.findViewById(R.id.bViewAnswers);
         answerButton.setOnClickListener(this);
@@ -570,6 +607,7 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
         Button bcallStart = (Button) convertView.findViewById(R.id.checkBox1);
         bcallStart.setOnClickListener(this);
         textView.setText(list.get(position));
+        topAnswer.setText(answers.get(position));
 //        askerNameTV.setText(askerNames.get(position));
         return convertView;
     }
@@ -724,6 +762,7 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
         });
     }
 }
+
 class MyAdapter1 extends BaseAdapter {
     private final String[] ndstring;
     Context context;

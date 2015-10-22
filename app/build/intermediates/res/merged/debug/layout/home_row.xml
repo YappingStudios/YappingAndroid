@@ -98,7 +98,8 @@ android:padding="5dp">
         android:layout_alignEnd="@+id/banswerintext"
         android:textColor="#fff"
         android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -112,7 +113,8 @@ android:padding="5dp">
         android:layout_alignEnd="@+id/bViewAnswers"
         android:textColor="#fff"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:visibility="gone" />
 
     <EditText
         android:layout_width="match_parent"
@@ -129,6 +131,7 @@ android:padding="5dp">
         android:layout_alignStart="@+id/banswerintext"
         android:textColor="@color/YappingColor"
         android:layout_marginBottom="5dp"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp"
+        android:visibility="gone" />
 
-</RelativeLayout><!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/layout/home_row.xml -->
+</RelativeLayout><!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/layout/home_row.xml -->

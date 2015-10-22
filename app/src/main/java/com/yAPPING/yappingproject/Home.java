@@ -672,6 +672,9 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
 //        input.setLayoutParams(lp);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setHorizontallyScrolling(false);
+        input.setVerticalScrollBarEnabled(true);
+
         input.setLines(5);
         builder.setView(input);
 

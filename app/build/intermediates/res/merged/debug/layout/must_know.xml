@@ -4,4 +4,4 @@
     android:id="@+id/pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/YappingColor"/><!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/layout/must_know.xml -->
+    android:background="@color/YappingColor"/><!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/layout/must_know.xml -->

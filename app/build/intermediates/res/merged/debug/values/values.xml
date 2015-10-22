@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="FAQAns">
         <item>yAPPING is a voice-based experience sharing platform, where you can connect with people(totally unknown to you) who have -been there and done that.Ask whatever you want regarding the five categories, and the person with relevant knowledge will reach out to you.</item>
@@ -37,7 +37,7 @@
         <item> My Questions</item>
         <item> FAQs</item>
     </string-array>
-    <!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="AlgaeGreen">#64E986</color>
     <color name="AliceBlue">#F0F8FF</color>
@@ -371,11 +371,11 @@
     <color name="ZombieGreen">#54C571</color>
     <color name="greyish">#565051</color>
     <color name="sinch_purple">#7E587E</color>
-    <!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="app_name">yAPPING</string>
@@ -390,7 +390,7 @@
     <string name="share_facebook">Spreading yAPPING-An experience sharing platform over voice</string>
     <string name="share_sms">Spreading yAPPING-An experience sharing platform over voice</string>
     <string name="share_twitter">Spreading yAPPING-An experience sharing platform over voice</string>
-    <!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--

@@ -447,7 +447,7 @@ public final class R {
         public static final int linearLayout=0x7f0d0057;
         public static final int listView1=0x7f0d0019;
         public static final int loggedInName=0x7f0d0059;
-        public static final int logout=0x7f0d0062;
+        public static final int logout=0x7f0d0063;
         public static final int maincontent=0x7f0d0016;
         public static final int my_questions_row_textview=0x7f0d002c;
         public static final int myquestionslistView=0x7f0d002b;
@@ -463,7 +463,7 @@ public final class R {
         public static final int remoteUser=0x7f0d0005;
         public static final int seeallquestlistView=0x7f0d004e;
         public static final int setPreferenceButton=0x7f0d0052;
-        public static final int share=0x7f0d0063;
+        public static final int share=0x7f0d0062;
         public static final int signUpButton=0x7f0d0053;
         public static final int splashimageView=0x7f0d005c;
         public static final int stopButton=0x7f0d005b;

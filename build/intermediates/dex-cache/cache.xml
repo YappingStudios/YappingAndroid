@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/home/rohitt/Documents/Android/YappingAndroid/app/libs/sinch-android-rtc-3.7.1.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="bf69cf98f8d8eb6c78ec7d0a0bcb016e95f79b5e">
-        <dex dex="/home/rohitt/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/sinch-android-rtc-3.7.1-1e84b6c2ea9172a78e78e3fa32b2f268e34f3963.jar" />
-    </item>
-    <item
-        jar="/home/rohitt/Documents/Android/YappingAndroid/app/libs/Parse-1.10.1.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="181b435832725bec96c11ff568bdfbccdacab944">
-        <dex dex="/home/rohitt/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/Parse-1.10.1-9ba64a1236a0bda5e6de656ab9d19f072d0ac703.jar" />
-    </item>
-    <item
-        jar="/home/rohitt/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="129874135e6081269ace2312092031558865de12">
-        <dex dex="/home/rohitt/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-9fba1e8065bf280395b87da3def380142b4cd9e8.jar" />
-    </item>
-    <item
-        jar="/home/rohitt/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
+        jar="/home/dilip/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
-        <dex dex="/home/rohitt/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-15a7d45f490b072e21db5787fc61d81e5d3b68f9.jar" />
+        <dex dex="/home/dilip/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-998452c0f42bccb760b68eb89994e9291f0b5ae8.jar" />
     </item>
     <item
-        jar="/home/rohitt/Documents/Android/YappingAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/jars/classes.jar"
+        jar="/home/dilip/Documents/Android/YappingAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="686344a780033e4ba22b926cd225f8d4941247e6">
-        <dex dex="/home/rohitt/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/classes-bfa101163a5bd930432c52a240ab58969b5bd3dc.jar" />
+        <dex dex="/home/dilip/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/classes-eb4d97fe2626d89109393b31c5c06013b91aba60.jar" />
     </item>
     <item
-        jar="/home/rohitt/Documents/Android/YappingAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/jars/libs/internal_impl-21.0.0.jar"
+        jar="/home/dilip/Documents/Android/YappingAndroid/app/libs/Parse-1.10.1.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="181b435832725bec96c11ff568bdfbccdacab944">
+        <dex dex="/home/dilip/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/Parse-1.10.1-7135f4d0e10cde1082a4d4a617c6f33e3d2d8a2c.jar" />
+    </item>
+    <item
+        jar="/home/dilip/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="/home/dilip/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-f616534dbd5d00f85a775ab30bc5ea67ec27414f.jar" />
+    </item>
+    <item
+        jar="/home/dilip/Documents/Android/YappingAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/jars/libs/internal_impl-21.0.0.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
-        <dex dex="/home/rohitt/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-6f8c63f6904046e2e167f661a5ba9d4c8525f4f8.jar" />
+        <dex dex="/home/dilip/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-6f20205098e11f4de7ac7910e8e53fb4a90021ac.jar" />
+    </item>
+    <item
+        jar="/home/dilip/Documents/Android/YappingAndroid/app/libs/sinch-android-rtc-3.7.1.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="bf69cf98f8d8eb6c78ec7d0a0bcb016e95f79b5e">
+        <dex dex="/home/dilip/Documents/Android/YappingAndroid/app/build/intermediates/pre-dexed/debug/sinch-android-rtc-3.7.1-d8478500703ea28feacf0e21e7db1ad62f01e76e.jar" />
     </item>
 
 </items>

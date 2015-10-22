@@ -41,4 +41,4 @@
         android:minLines="3"
         android:layout_below="@+id/button2"
         android:layout_marginTop="60dp"/>
-</RelativeLayout><!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/layout/ratings_screen.xml -->
+</RelativeLayout><!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/layout/ratings_screen.xml -->

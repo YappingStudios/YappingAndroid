@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Username"
         android:ems="10"
         android:id="@+id/nameeditText"
 
@@ -98,4 +98,4 @@
         android:layout_marginBottom="5dp"
         android:textColor="@color/YappingColor" />
 
-</LinearLayout><!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/layout/signup.xml -->
+</LinearLayout><!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/layout/signup.xml -->

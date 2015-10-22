@@ -364,6 +364,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
                         questionAsked.saveInBackground();
                         questionObjectId = questionAsked.getObjectId();
                         // TODO Auto-generated method stub
+                        Toast.makeText(v.getContext(), "Your question has been posted.", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(),
                                 Home.class));
                     }
@@ -444,7 +445,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
                     if (childview.getId() == R.id.questions) {
                         String question = ((TextView) childview).getText().toString().trim();
                         Toast.makeText(view.getContext(), question, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(view.getContext(),"IS it WOring",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(view.getContext(),"IS it WOring",Toast.LENGTH_SHORT).show();
                     }
 //                    if(childview.getId() == R.id.bViewAnswers){
 //                        Intent iViewAnswers = new Intent(view.getContext(), ViewAnswers.class);
@@ -671,6 +672,7 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
 //        input.setLayoutParams(lp);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setLines(5);
         builder.setView(input);
 
 // Set up the buttons

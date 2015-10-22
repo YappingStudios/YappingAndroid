@@ -7,16 +7,17 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="Profile"/>
-    <item
-        android:id="@+id/logout"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="Logout"/>
+
     <item
         android:id="@+id/share"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="Share"/>
+    <item
+        android:id="@+id/logout"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Logout"/>
 
 </menu>
-<!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/menu/main.xml -->
+<!-- From: file:/home/dilip/Documents/Android/YappingAndroid/app/src/main/res/menu/main.xml -->

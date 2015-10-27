@@ -55,7 +55,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
     List<String> stringDataFromParse;
     boolean isOpen=false;
     EditText question;
-    Button ask;
+    Button ask, cancel;
     Button setPreferencesbeforeasking;
     ListView lvcontent;
     private DrawerLayout drawerlayout;
@@ -107,6 +107,18 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
         System.out.println("Back Pressed");
     }
 
+    public void hideText(View v){
+        if(isOpen){
+            ObjectAnimator animation = ObjectAnimator.ofInt(question,"lines",6,1);
+            animation.setDuration(100).start();
+            isOpen=false;
+            question.setText(null);
+            ask.setVisibility(View.GONE);
+            cancel.setVisibility(View.GONE);
+            setPreferencesbeforeasking.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -118,23 +130,11 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
             ObjectAnimator animation = ObjectAnimator.ofInt(question,"lines",1,6);
             animation.setDuration(100).start();
             isOpen=true;
-
+            cancel.setVisibility(View.VISIBLE);
             ask.setVisibility(View.VISIBLE);
             setPreferencesbeforeasking.setVisibility(View.VISIBLE);
 
         }
-        else{
-            ObjectAnimator animation = ObjectAnimator.ofInt(question,"lines",6,1);
-            animation.setDuration(100).start();
-            isOpen=false;
-
-            ask.setVisibility(View.GONE);
-            setPreferencesbeforeasking.setVisibility(View.GONE);
-        }
-
-
-
-
     }
 
     @Override
@@ -297,6 +297,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
 
         question = (EditText) findViewById(R.id.etQuestion);
         ask = (Button) findViewById(R.id.bAsk);
+        cancel = (Button) findViewById(R.id.bCancel);
         bAIN = (Button) findViewById(R.id.bViewAnswers);
         lvcontent = (ListView) findViewById(R.id.listView1);
         setPreferencesbeforeasking = (Button) findViewById(R.id.bsetpreferencesbeforeask);
@@ -319,7 +320,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
             }
         };
         drawerlayout.setDrawerListener(drawerlistener);
-
+        lvcontent.requestFocus();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(Home.this, R.layout.drawer_view, ndstring);
         drawerlist.setAdapter(adapter);
         drawerlist.setOnItemClickListener(new DrawerItemListener());

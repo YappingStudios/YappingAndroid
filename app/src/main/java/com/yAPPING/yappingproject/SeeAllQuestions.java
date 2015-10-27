@@ -228,7 +228,7 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String userAnswer = input.getText().toString();
-                Toast.makeText(view.getContext(), userAnswer, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(view.getContext(), userAnswer, Toast.LENGTH_SHORT).show();
 //                ParseObject answerInText = new ParseObject("AnswerInText");
                 answerInText.put("answers", userAnswer);
                 // answerInText.put("who is answering", currentUser);

@@ -29,7 +29,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:gravity="top|left"
-                android:hint="What&apos;s your query today?"
+                android:hint="What&apos;s your query today? Tap here."
                 android:textSize="20dp"
                 android:onClick="animateText"
                 android:background="@drawable/rounded"
@@ -48,7 +48,9 @@
                 android:divider="@color/White"
                 android:background="@drawable/rounded"
                 android:layout_margin="5dp"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
             </ListView>
 
             <Button
@@ -83,6 +85,23 @@
                 android:textColor="@color/YappingColor"
                 android:visibility="gone"
                 android:layout_marginRight="5dp" />
+
+            <Button
+                android:id="@+id/bCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/etQuestion"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignRight="@id/strut"
+                android:background="@drawable/rounded"
+                android:text="Cancel"
+                android:textColor="@color/YappingColor"
+                android:visibility="gone"
+                android:layout_marginRight="5dp"
+                android:onClick="hideText" />
 
 
         </RelativeLayout>

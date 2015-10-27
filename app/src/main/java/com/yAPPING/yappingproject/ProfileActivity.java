@@ -86,6 +86,7 @@ ArrayList updatedInterests =new ArrayList();
             for(int count=0;count<preferenceStrings.size();count++){
             big = big+","+preferenceStrings.get(count);
             }
+            big=big.substring(1);
             interestsfromParseTV.setText(big);
 
 //            emailid.setText(email1);

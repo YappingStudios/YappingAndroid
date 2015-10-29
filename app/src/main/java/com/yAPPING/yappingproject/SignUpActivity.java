@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ParseInstallation;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -22,11 +24,12 @@ import java.util.ArrayList;
  */
 public class SignUpActivity extends FragmentActivity {
     ParseUser user;
-    ArrayList userPreferences =new ArrayList();
-    Dialog_interests dialog_interests = new Dialog_interests(userPreferences);
+    ArrayList<Integer> userPreferences =new ArrayList();
+    Dialog_interests_signup dialog_interests = new Dialog_interests_signup(userPreferences);
 
     EditText username, userpass, useremail;
     private ProgressDialog progressDialog;
+    ParseInstallation installation = ParseInstallation.getCurrentInstallation();
 
 
     @Override
@@ -38,73 +41,79 @@ public class SignUpActivity extends FragmentActivity {
         progressDialog.setCancelable(false);
         username = (EditText) findViewById(R.id.nameeditText);
         userpass = (EditText) findViewById(R.id.passEditText);
-        useremail = (EditText) findViewById(R.id.emaileditText);}
+        useremail = (EditText) findViewById(R.id.emaileditText);
+    }
 
     public void signUpClicked(final View v) {
         if (isInternetAvailable(this)) {
 
-        if (username.getText().toString().equals("")) {
-            Toast.makeText(v.getContext(), "Enter Username", Toast.LENGTH_SHORT).show();
-        } else if (userpass.getText().toString().equals("")) {
-            Toast.makeText(v.getContext(), "Enter Password", Toast.LENGTH_SHORT).show();
-        } else if (useremail.getText().toString().equals("")) {
-            Toast.makeText(v.getContext(), "Enter mail", Toast.LENGTH_SHORT).show();
-        } else if (userPreferences.isEmpty()) {
-            Toast.makeText(v.getContext(), "Please choose at least one Preference to view those questions", Toast.LENGTH_SHORT).show();
-        } else {
-            progressDialog.show();
+            if (username.getText().toString().equals("")) {
+                Toast.makeText(v.getContext(), "Enter Username", Toast.LENGTH_SHORT).show();
+            } else if (userpass.getText().toString().equals("")) {
+                Toast.makeText(v.getContext(), "Enter Password", Toast.LENGTH_SHORT).show();
+            } else if (useremail.getText().toString().equals("")) {
+                Toast.makeText(v.getContext(), "Enter mail", Toast.LENGTH_SHORT).show();
+            } else if (userPreferences.isEmpty()) {
+                Toast.makeText(v.getContext(), "Please choose at least one Preference to view those questions", Toast.LENGTH_SHORT).show();
+            } else {
+                progressDialog.show();
 
 
-            //Parse part
-            user = new ParseUser();
-            user.setUsername(username.getText().toString());
-            user.setPassword(userpass.getText().toString());
-            user.setEmail(useremail.getText().toString());
-            user.put("preferences", userPreferences);
-            user.put("rating_food", 0);
-            user.put("rating_travel", 0);
-            user.put("rating_lifestyle", 0);
-            user.put("rating_tech", 0);
-            user.put("rating_education", 0);
-
+                //Parse part
+                user = new ParseUser();
+                user.setUsername(username.getText().toString());
+                user.setPassword(userpass.getText().toString());
+                user.setEmail(useremail.getText().toString());
+                user.put("preferences", userPreferences);
+                user.put("rating_total",0);
+                user.put("rating_food", 0);
+                user.put("rating_travel", 0);
+                user.put("rating_lifestyle", 0);
+                user.put("rating_tech", 0);
+                user.put("rating_education", 0);
+                user.put("installation_id",installation.getInstallationId());
 // other fields can be set just like with ParseObject
-            // user.put("phone", "650-253-0000");
+                // user.put("phone", "650-253-0000");
+                ParseObject XPClass = new ParseObject("XPClass");
+                XPClass.put("username",username.getText().toString());
+                XPClass.put("totalXP",0);
+                XPClass.saveInBackground();
 
-            user.signUpInBackground(new SignUpCallback() {
+                user.signUpInBackground(new SignUpCallback() {
 
-                                        public void done(com.parse.ParseException e) {
-                                            if (e == null) {
-                                                progressDialog.dismiss();
-                                                // Hooray! Let them use the app now.
-                                                Intent i = new Intent(v.getContext(), MainActivity.class);
-                                                startActivity(i);
+                                            public void done(com.parse.ParseException e) {
+                                                if (e == null) {
+                                                    progressDialog.dismiss();
+                                                    // Hooray! Let them use the app now.
+                                                    Intent i = new Intent(v.getContext(), MainActivity.class);
+                                                    startActivity(i);
 
-                                            } else {
-                                                // Sign up didn't succeed. Look at the ParseException
-                                                // to
-                                                // figure out what went wrong
-                                                progressDialog.dismiss();
-                                                Toast.makeText(v.getContext(), e.toString(), Toast.LENGTH_LONG).show();
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                                                builder.setMessage("Error");
-                                                builder.setTitle("Oops");
-                                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        dialogInterface.dismiss();
-                                                    }
-                                                });
-                                                AlertDialog dialog = builder.create();
-                                                dialog.show();
+                                                } else {
+                                                    // Sign up didn't succeed. Look at the ParseException
+                                                    // to
+                                                    // figure out what went wrong
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(v.getContext(), e.toString(), Toast.LENGTH_LONG).show();
+                                                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                                                    builder.setMessage("Error");
+                                                    builder.setTitle("Oops");
+                                                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            dialogInterface.dismiss();
+                                                        }
+                                                    });
+                                                    AlertDialog dialog = builder.create();
+                                                    dialog.show();
 
+                                                }
                                             }
                                         }
-                                    }
 
-            );
+                );
+            }
+
         }
-
-    }
         else{
             Toast.makeText(this,"You are not connected to the internet",Toast.LENGTH_SHORT).show();
         }

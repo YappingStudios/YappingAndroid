@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -19,6 +20,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +42,9 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -53,7 +57,7 @@ import android.support.v4.app.FragmentActivity;
 
 public class Home extends FragmentActivity implements OnItemClickListener, OnClickListener {
     List<String> stringDataFromParse;
-    boolean isOpen=false;
+    boolean isOpen = false;
     EditText question;
     Button ask, cancel;
     Button setPreferencesbeforeasking;
@@ -63,22 +67,23 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
     private ListView drawerlist;
     private String userAnswer = "";
     ParseObject questionAsked = new ParseObject("Questions");
-    ParseObject questionAsked2 = new ParseObject("Questions2");
+
     //    ParseObject answerInText = new ParseObject("AnswerInText");
     ParseUser currentUser = ParseUser.getCurrentUser();
-    Dialog_interests dialog_interests;
+    Dialog_interests_signup dialog_interests;
     List<ParseObject> ob;
     ArrayList questioncategorieschosen = new ArrayList();
     String[] ndstring = null;
     private String questionObjectId;
     private String questionAtPosition;
     Button bAIN;
-     List<Integer> userPreferences;
-     List<Integer> questioncategories;
+    List<Integer> userPreferences;
+    List<Integer> questioncategories;
     private List<String> askerNamesFromParse;
     private ProgressDialog progressDialog;
     public MyAdapter ad;
-
+    DrawerLayout mDrawerLayout;
+    ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     public void onBackPressed() {
@@ -107,11 +112,11 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
         System.out.println("Back Pressed");
     }
 
-    public void hideText(View v){
-        if(isOpen){
-            ObjectAnimator animation = ObjectAnimator.ofInt(question,"lines",6,1);
+    public void hideText(View v) {
+        if (isOpen) {
+            ObjectAnimator animation = ObjectAnimator.ofInt(question, "lines", 6, 1);
             animation.setDuration(100).start();
-            isOpen=false;
+            isOpen = false;
             question.setText(null);
             ask.setVisibility(View.GONE);
             cancel.setVisibility(View.GONE);
@@ -125,11 +130,11 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
         return true;
     }
 
-    public void animateText(View v){
-        if(!isOpen){
-            ObjectAnimator animation = ObjectAnimator.ofInt(question,"lines",1,6);
+    public void animateText(View v) {
+        if (!isOpen) {
+            ObjectAnimator animation = ObjectAnimator.ofInt(question, "lines", 1, 6);
             animation.setDuration(100).start();
-            isOpen=true;
+            isOpen = true;
             cancel.setVisibility(View.VISIBLE);
             ask.setVisibility(View.VISIBLE);
             setPreferencesbeforeasking.setVisibility(View.VISIBLE);
@@ -258,18 +263,61 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
         progressDialog.setMessage("Please wait..");
         progressDialog.setCancelable(false);
 
-        dialog_interests = new Dialog_interests(questioncategorieschosen);
+        dialog_interests = new Dialog_interests_signup(questioncategorieschosen);
         ndstring = getResources().getStringArray(R.array.nd);
-        questionAsked2.saveInBackground();
         userPreferences = currentUser.getList("preferences");
-        questioncategories=questionAsked.getList("categories");
+        questioncategories = questionAsked.getList("categories");
 
         stringDataFromParse = new ArrayList<String>();
         askerNamesFromParse = new ArrayList<String>();
+        drawerlist = (ListView) findViewById(R.id.drawerlist);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Home.this, R.layout.drawer_view, ndstring);
+        drawerlist.setAdapter(adapter);
+        drawerlist.setOnItemClickListener(new DrawerItemListener());
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,                  /* host Activity */
+                mDrawerLayout,         /* DrawerLayout object */
+                R.drawable.final1,  /* nav drawer icon to replace 'Up' caret */
+                R.string.drawer_open,  /* "open drawer" description */
+                R.string.drawer_close  /* "close drawer" description */
+        ) {
+
+            /**
+             * Called when a drawer has settled in a completely closed state.
+             */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getActionBar().setTitle("Closed");
+            }
+
+            /**
+             * Called when a drawer has settled in a completely open state.
+             */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getActionBar().setTitle("Open");
+            }
+        };
+
+        // Set the drawer toggle as the DrawerListener
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+
+
+
+
+
+
+
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Questions");
 
-        for(int i=0;i<userPreferences.size();i++){
-            query.whereEqualTo("categories",userPreferences.get(i));
+        for (int i = 0; i < userPreferences.size(); i++) {
+            query.whereEqualTo("categories", userPreferences.get(i));
             query.orderByDescending("createdAt");
             try {
                 ob = query.find();
@@ -284,15 +332,13 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
 
             }
         }
-         stringDataFromParse =removeDuplicates(stringDataFromParse);
+        stringDataFromParse = removeDuplicates(stringDataFromParse);
 //        askerNamesFromParse = removeDuplicates(askerNamesFromParse);
-
 
 
 //List<Integer> userPreferencesFromDatabase = (List<Integer>) currentUser.get("preferences");
 //        Integer userPreferencesFromDatabaseSize = userPreferencesFromDatabase.size();
 //        Toast.makeText(this,userPreferencesFromDatabaseSize,Toast.LENGTH_SHORT).show();
-
 
 
         question = (EditText) findViewById(R.id.etQuestion);
@@ -301,52 +347,56 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
         bAIN = (Button) findViewById(R.id.bViewAnswers);
         lvcontent = (ListView) findViewById(R.id.listView1);
         setPreferencesbeforeasking = (Button) findViewById(R.id.bsetpreferencesbeforeask);
-        drawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-        drawerlist = (ListView) findViewById(R.id.drawerlist);
-        drawerlistener = new ActionBarDrawerToggle(this, drawerlayout,
-                R.drawable.final1, R.string.hello_world, R.string.hello_world) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                // TODO Auto-generated method stub
-                super.onDrawerClosed(drawerView);
-//                Toast.makeText(Home.this, "Drawer closed", Toast.LENGTH_LONG).show();
-            }
+//        drawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+//        drawerlist = (ListView) findViewById(R.id.drawerlist);
+//        drawerlistener = new ActionBarDrawerToggle(this, drawerlayout,
+//                R.drawable.final1, R.string.drawer_open, R.string.drawer_close) {
+//            @Override
+//            public void onDrawerClosed(View drawerView) {
+//                // TODO Auto-generated method stub
+//                super.onDrawerClosed(drawerView);
+////                Toast.makeText(Home.this, "Drawer closed", Toast.LENGTH_LONG).show();
+////                drawerlayout.closeDrawer(Gravity.LEFT);
+//
+//            }
+//
+//            @Override
+//            public void onDrawerOpened(View drawerView) {
+//                // TODO Auto-generated method stub
+//                super.onDrawerOpened(drawerView);
+////                drawerlayout.closeDrawer(Gravity.LEFT);
+////                Toast.makeText(Home.this, "Drawer opened", Toast.LENGTH_LONG).show();
+//            }
+//        };
+//        drawerlayout.setDrawerListener(drawerlistener);
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                // TODO Auto-generated method stub
-                super.onDrawerOpened(drawerView);
-//                Toast.makeText(Home.this, "Drawer opened", Toast.LENGTH_LONG).show();
-            }
-        };
-        drawerlayout.setDrawerListener(drawerlistener);
-        lvcontent.requestFocus();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Home.this, R.layout.drawer_view, ndstring);
-        drawerlist.setAdapter(adapter);
-        drawerlist.setOnItemClickListener(new DrawerItemListener());
+//        lvcontent.requestFocus();
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Home.this, R.layout.drawer_view, ndstring);
+//        drawerlist.setAdapter(adapter);
+//        drawerlist.setOnItemClickListener(new DrawerItemListener());
+//
+//
+//        ActionBar ab = getActionBar();
+//
+//        ab.setHomeButtonEnabled(true);
+//        ab.setDisplayHomeAsUpEnabled(true);
+//        ab.show();
+//
+//        question.setOnTouchListener(new View.OnTouchListener() {
+//            public boolean onTouch(View view, MotionEvent event) {
 
 
-        ActionBar ab = getActionBar();
-
-        ab.setHomeButtonEnabled(true);
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.show();
-
-        question.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent event) {
-
-
-                return false;
-            }
-        });
+//                return false;
+//            }
+//        });
         //FOR DRAWER ICON IN ACTION BAR
-        drawerlayout.post(new Runnable() {
-            @Override
-            public void run() {
-                drawerlistener.syncState();
-            }
-        });
-
+//        drawerlayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerlistener.syncState();
+//            }
+//        });
+lvcontent.requestFocus();
 
         ask.setOnClickListener(new OnClickListener() {
 
@@ -397,7 +447,18 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
                 break;
         }
     }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
     private class DrawerItemListener implements OnItemClickListener {
 
@@ -522,48 +583,48 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
 
 class MyAdapter extends BaseAdapter implements OnClickListener {
 
-    ParseObject answerInText = new ParseObject("AnswerInText");
+//    ParseObject answerInText = new ParseObject("AnswerInText");
     ParseUser currentUser = ParseUser.getCurrentUser();
     List<String> stringDataFromParse;
     List<String> list;
     List<String> askerNames;
-    List<String> answers;
+//    List<String> answers;
     private String questionAtPosition;
-    public String questionCorresponding;
+//    public String questionCorresponding;
 //    private String askerNameForPassing;
 
     MyAdapter(List<String> list, List<String> askerNames) {
         this.list = list;
 
-
-        answers=list;
-        for(int i=0;i<list.size();i++){
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("AnswerInText");
-            query.whereEqualTo("question1", list.get(i));
-            final int tempi=i;
-            query.findInBackground(new FindCallback<ParseObject>() {
-                public void done(List<ParseObject> questionswithsametext, ParseException e) {
-                    if (e == null) {
-//                    Log.d("score", "Retrieved " + scoreList.size() + " scores");
-//                    ParseObject oneOfTheQuestionsWithSameText = questionswithsametext.get(0);
-//                    answers=  oneOfTheQuestionsWithSameText.getString("answers");
-                        int templ=answers.size();
-                        for (int k = 0; k < questionswithsametext.size(); k++) {
-                            ParseObject oneOfTheQuestionsWithSameText = questionswithsametext.get(k);
-                            String oneOfTheQuestionsText = oneOfTheQuestionsWithSameText.getString("answers");
-                            answers.set(tempi, oneOfTheQuestionsText);
-                            //answers.add(oneOfTheQuestionsText);
-                        }
-
-
-//                    answers11.add("hi");
-                    } else {
-                        Log.d("score", "Error: " + e.getMessage());
-                    }
-                }
-            });
-
-        }
+//
+//        answers=list;
+//        for(int i=0;i<list.size();i++){
+//            ParseQuery<ParseObject> query = ParseQuery.getQuery("AnswerInText");
+//            query.whereEqualTo("question1", list.get(i));
+//            final int tempi=i;
+//            query.findInBackground(new FindCallback<ParseObject>() {
+//                public void done(List<ParseObject> questionswithsametext, ParseException e) {
+//                    if (e == null) {
+////                    Log.d("score", "Retrieved " + scoreList.size() + " scores");
+////                    ParseObject oneOfTheQuestionsWithSameText = questionswithsametext.get(0);
+////                    answers=  oneOfTheQuestionsWithSameText.getString("answers");
+//                        int templ=answers.size();
+//                        for (int k = 0; k < questionswithsametext.size(); k++) {
+//                            ParseObject oneOfTheQuestionsWithSameText = questionswithsametext.get(k);
+//                            String oneOfTheQuestionsText = oneOfTheQuestionsWithSameText.getString("answers");
+//                            answers.set(tempi, oneOfTheQuestionsText);
+//                            //answers.add(oneOfTheQuestionsText);
+//                        }
+//
+//
+////                    answers11.add("hi");
+//                    } else {
+//                        Log.d("score", "Error: " + e.getMessage());
+//                    }
+//                }
+//            });
+//
+//        }
 
 
 //        this.askerNames=askerNames;
@@ -609,7 +670,7 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
         Button bcallStart = (Button) convertView.findViewById(R.id.checkBox1);
         bcallStart.setOnClickListener(this);
         textView.setText(list.get(position));
-        topAnswer.setText(answers.get(position));
+//        topAnswer.setText(answers.get(position));
 //        askerNameTV.setText(askerNames.get(position));
         return convertView;
     }
@@ -631,7 +692,7 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
     }
 
     private void ViewAnswersMethod(View view) {
-
+        String questionCorresponding = new String();
 
         Intent iViewAnswers = new Intent(view.getContext(), ViewAnswers.class);
 
@@ -656,8 +717,9 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
         view.getContext().startActivity(iViewAnswers);
 
     }
-
     private void answerForQuestion(final View view) {
+
+
         //        int position = (Integer)v.getTag();
 //        Toast.makeText(this,position+"",Toast.LENGTH_LONG).show();
 //        Toast.makeText(view.getContext(),"Test",Toast.LENGTH_SHORT).show();
@@ -681,12 +743,17 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
 
 // Set up the buttons
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            String questionCorresponding = new String();
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String userAnswer = input.getText().toString();
 //                Toast.makeText(view.getContext(), userAnswer, Toast.LENGTH_SHORT).show();
 //                ParseObject answerInText = new ParseObject("AnswerInText");
+                ParseObject answerInText = new ParseObject("AnswerInText");
                 answerInText.put("answers", userAnswer);
+                answerInText.put("answerer_name", currentUser.getUsername().toString());
+                answerInText.put("answer_likes",0);
                 // answerInText.put("who is answering", currentUser);
 
 //        answerInText.put("whose question",);
@@ -702,17 +769,78 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
 //                            System.out.println(textview.getText().toString().trim());
                             questionCorresponding = textview.getText().toString();
                             answerInText.put("question1", questionCorresponding);
+
                         }
                     }
 
                 }
                 answerInText.saveInBackground();
+//                personAskingQuestion = new String();
+
+//                ParseQuery<ParseObject> query = new ParseQuery("Questions");
+//                query.whereEqualTo("question", questionCorresponding);
+//                query.findInBackground(new FindCallback<ParseObject>() {
+//
+//
+//                    public void done(List<ParseObject> scoreList, ParseException e) {
+////                        personAskingQuestion = scoreList.get(0).getString("username");
+//
+//                    }
+//
+//
+//                });
+//
+//
+//
+//                ParseQuery<ParseObject> query1 = new ParseQuery("_User");
+////                Toast.makeText(view.getContext(),personAskingQuestion,Toast.LENGTH_SHORT).show();
+////                query1.whereEqualTo("username", personAskingQuestion);
+//                query1.whereEqualTo("username", currentUser.getUsername());
+//                query1.findInBackground(new FindCallback<ParseObject>() {
+//                    public void done(List<ParseObject> scoreList, ParseException e) {
+//                       String installation_id =  scoreList.get(0).getString("installation_id");
+
+
+                ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("Questions");
+                q.whereEqualTo("question", questionCorresponding);
+                q.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> list, ParseException e) {
+                        for (int i = 0; i < list.size(); i++) {
+                            ParseObject ob = list.get(i);
+                            String name = ob.getString("username");
+                            ParseQuery<ParseObject> qq = new ParseQuery<ParseObject>("_User");
+                            qq.whereEqualTo("username", name);
+                            qq.findInBackground(new FindCallback<ParseObject>() {
+                                @Override
+                                public void done(List<ParseObject> listt, ParseException e) {
+                                    for (int ii = 0; ii < listt.size(); ii++) {
+                                        ParseObject obb = listt.get(ii);
+                                        String installation_id = obb.getString("installation_id");
+                                        ParseQuery query2 = ParseInstallation.getQuery();
+                                        query2.whereEqualTo("installationId", installation_id);
+                                        ParsePush gotAnsPush = new ParsePush();
+                                        gotAnsPush.setQuery(query2);
+                                        gotAnsPush.setMessage("Your question got an answer");
+                                        gotAnsPush.sendInBackground();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
+
             }
 
+
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+
+
+        builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog,int which){
                 dialog.cancel();
             }
         });

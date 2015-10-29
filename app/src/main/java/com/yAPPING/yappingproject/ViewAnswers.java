@@ -1,20 +1,28 @@
 package com.yAPPING.yappingproject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +33,11 @@ import java.util.List;
 public class ViewAnswers extends Activity{
 
     ListView valv;
-//    List<String> answers11;
-ArrayList<String> answers11;
+    //    List<String> answers11;
+    ArrayList<String> answers11;
+    private ArrayList<String> askerer_name;
+
+
 //    valv.setAdapter(new )
 
 
@@ -37,14 +48,16 @@ ArrayList<String> answers11;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_answers);
-answers11=new ArrayList<String>();
+        answers11=new ArrayList<String>();
+        askerer_name = new ArrayList<String>();
         valv = (ListView) findViewById(R.id.viewanswerslistView);
         Intent intent = getIntent();
 
 //        answers11.add("hai");
-        String questionclicked = intent.getExtras().getString("questionclicked");
+        final String questionclicked = intent.getExtras().getString("questionclicked");
         ParseQuery<ParseObject> query = ParseQuery.getQuery("AnswerInText");
         query.whereEqualTo("question1", questionclicked);
+        query.orderByDescending("answer_likes");
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> questionswithsametext, ParseException e) {
                 if (e == null) {
@@ -54,9 +67,11 @@ answers11=new ArrayList<String>();
                     for (int i = 0; i < questionswithsametext.size(); i++) {
                         ParseObject oneOfTheQuestionsWithSameText = questionswithsametext.get(i);
                         String oneOfTheQuestionsText = oneOfTheQuestionsWithSameText.getString("answers");
+                        String oneOfTheUsersNames = oneOfTheQuestionsWithSameText.getString("answerer_name");
                         answers11.add(oneOfTheQuestionsText);
+                        askerer_name.add(oneOfTheUsersNames);
                     }
-                    valv.setAdapter(new ViewAnswersAdapter(answers11));
+                    valv.setAdapter(new ViewAnswersAdapter(answers11,askerer_name,questionclicked));
 //                    answers11.add("hi");
                 } else {
                     Log.d("score", "Error: " + e.getMessage());
@@ -73,11 +88,18 @@ answers11=new ArrayList<String>();
 }
 
 
-class ViewAnswersAdapter extends BaseAdapter{
-List<String> answers;
-    ViewAnswersAdapter(List<String> list){
-    this.answers=list;
-}
+class ViewAnswersAdapter extends BaseAdapter {
+    List<String> answers, askerer_name;
+    ParseUser currentUser = ParseUser.getCurrentUser();
+    public static final String MY_PREFS_NAME = "MyPrefsFile";
+    String questionclicked;
+    ViewAnswersAdapter(List<String> list, List<String> list1,String questionclicked) {
+        this.answers = list;
+        this.askerer_name = list1;
+        this.questionclicked=questionclicked;
+    }
+
+
     @Override
     public int getCount() {
         return answers.size();
@@ -94,12 +116,221 @@ List<String> answers;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         convertView = inflater.inflate(R.layout.view_answers_row, null);
-        TextView textView = (TextView) convertView.findViewById(R.id.view_answers_row_textview);
+        final SharedPreferences preferences = convertView.getContext().getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
+        final TextView textView = (TextView) convertView.findViewById(R.id.view_answers_row_textview);
+        TextView textView1 = (TextView) convertView.findViewById(R.id.view_answers_row_askerer_name);
+        final TextView answer_likes_textview  = (TextView) convertView.findViewById(R.id.answer_likes_textview);
+        final ToggleButton bPromote = (ToggleButton) convertView.findViewById(R.id.bPromote);
+//        bPromote.setTag(1,position);
+        if(bPromote.getTag() != null) {
+            if(bPromote.getTag().toString().equals(questionclicked)) {
+                SharedPreferences prefs = convertView.getContext().getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
+                Boolean tgpref = prefs.getBoolean("tgpref" + position + questionclicked, false);
+                bPromote.setChecked(tgpref);
+            }
+        }
+
+//        bPromote.setChecked(toggleStateCheck(convertView));
+        bPromote.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                RelativeLayout parent = (RelativeLayout) buttonView.getParent();
+                for (int i = 0; i < parent.getChildCount(); i++) {
+                    View childview = parent.getChildAt(i);
+                    if (childview instanceof TextView) {
+                        if (childview.getId() == R.id.view_answers_row_askerer_name) {
+                            String XPName = ((TextView) childview).getText().toString();
+
+                            ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("XPClass");
+                            q.whereEqualTo("username", XPName);
+                            q.findInBackground(new FindCallback<ParseObject>() {
+                                @Override
+                                public void done(List<ParseObject> list, ParseException e) {
+                                    for (int j = 0; j < list.size(); j++) {
+                                        ParseObject ob = list.get(j);
+                                        int totalXP = ob.getInt("totalXP");
+                                        if (isChecked) {
+                                            SharedPreferences.Editor editor = preferences.edit();
+                                            editor.putBoolean("tgpref" + position, true); // value to store
+                                            editor.commit();
+                                            Toast.makeText(buttonView.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
+                                            totalXP++;
+                                            Toast.makeText(buttonView.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
+                                            ob.put("totalXP", totalXP);
+                                            ob.saveInBackground();
+                                            bPromote.setTag(questionclicked);
+//                                            bPromote.setTag(null);
+                                            //Increase answer likes
+                                            ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("AnswerInText");
+                                            RelativeLayout parent1 = (RelativeLayout) buttonView.getParent();
+                                            for (int i = 0; i < parent1.getChildCount(); i++) {
+                                                View childview1 = parent1.getChildAt(i);
+                                                if (childview1 instanceof TextView) {
+                                                    if (childview1.getId() == R.id.view_answers_row_textview) {
+                                                        String answer = ((TextView) childview1).getText().toString();
+                                                        q.whereEqualTo("answers", answer);
+                                                        q.findInBackground(new FindCallback<ParseObject>() {
+                                                            @Override
+                                                            public void done(List<ParseObject> list, ParseException e) {
+                                                                for (int i = 0; i < list.size(); i++) {
+                                                                    ParseObject ob = list.get(i);
+                                                                    int answerlikes = ob.getInt("answer_likes");
+                                                                    answerlikes++;
+                                                                    ob.put("answer_likes", answerlikes);
+                                                                    answer_likes_textview.setText(answerlikes + "");
+                                                                    ob.saveInBackground();
+                                                                }
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            }
+
+                                        } else {
+                                            SharedPreferences.Editor editor = preferences.edit();
+                                            editor.putBoolean("tgpref" + position, false); // value to store
+                                            editor.commit();
+                                            Toast.makeText(buttonView.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
+                                            totalXP--;
+                                            Toast.makeText(buttonView.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
+                                            ob.put("totalXP", totalXP);
+                                            ob.saveInBackground();
+//                                            bPromote.setTag(questionclicked);
+                                            bPromote.setTag(null);
+                                            //Decrease answer likes
+                                            ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("AnswerInText");
+                                            RelativeLayout parent1 = (RelativeLayout) buttonView.getParent();
+                                            for (int i = 0; i < parent1.getChildCount(); i++) {
+                                                View childview1 = parent1.getChildAt(i);
+                                                if (childview1 instanceof TextView) {
+                                                    if (childview1.getId() == R.id.view_answers_row_textview) {
+                                                        String answer = ((TextView) childview1).getText().toString();
+                                                        q.whereEqualTo("answers", answer);
+                                                        q.findInBackground(new FindCallback<ParseObject>() {
+                                                            @Override
+                                                            public void done(List<ParseObject> list, ParseException e) {
+                                                                for (int i = 0; i < list.size(); i++) {
+                                                                    ParseObject ob = list.get(i);
+                                                                    int answerlikes = ob.getInt("answer_likes");
+                                                                    answerlikes--;
+                                                                    ob.put("answer_likes", answerlikes);
+                                                                    answer_likes_textview.setText(answerlikes + "");
+                                                                    ob.saveInBackground();
+                                                                }
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        });
         textView.setText(answers.get(position));
+        textView1.setText(askerer_name.get(position));
+//        answer_likes_textview.setText(answerlikes);
+
+        ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("AnswerInText");
+
+        q.whereEqualTo("answers", answers.get(position));
+        q.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                for (int i = 0; i < list.size(); i++) {
+                    ParseObject ob = list.get(i);
+                    int answerlikes = ob.getInt("answer_likes");
+                    answer_likes_textview.setText(answerlikes + "");
+                }
+            }
+        });
+
+
+
+
         return convertView;
 
     }
+
+//    public boolean toggleStateCheck(View view){
+//        SharedPreferences prefs = view.getContext().getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
+//        Boolean tgpref = prefs.getBoolean("tgpref", false);
+//        if(tgpref==true){
+//return true;
+//        }
+//        else{
+//return false;
+//        }
+//    }
 }
+
+//    @Override
+//    public void onClick(final View v) {
+//        if (v.getId() == R.id.bPromote) {
+////            v.setClickable(false);
+//
+//            String currentUserName = currentUser.getUsername().toString();
+//            String XP_increase_name = new String();
+//
+//            //Increase XP
+//            //Check for correctness
+////
+//            RelativeLayout parentRow = (RelativeLayout) v.getParent();
+//            for (int i = 0; i < parentRow.getChildCount(); i++) {
+//                View childView = parentRow.getChildAt(i);
+//                if (childView instanceof TextView) {
+//                    if (childView.getId() == R.id.view_answers_row_askerer_name) {
+//                        TextView textview = (TextView) childView;
+////                            System.out.println(textview.getText().toString().trim());
+//                        XP_increase_name = textview.getText().toString();
+////Toast.makeText(v.getContext(),XP_increase_name,Toast.LENGTH_SHORT).show();
+////                        System.out.print("LOOOOOOOOOOOOOOOOOOOK" + XP_increase_name);
+////                answerInText.put("question1", questionCorresponding);
+//                    }
+//                }
+//
+//            }
+//
+//            ParseQuery<ParseObject> query = new ParseQuery("_User");
+//            query.whereEqualTo("username",XP_increase_name);
+//            query.findInBackground(new FindCallback<ParseObject>() {
+//                public void done(List<ParseObject> scoreList, ParseException e) {
+//                ParseObject ob= scoreList.get(0);
+//                    String abc = ob.get("rating_total").toString();
+//                    Toast.makeText(v.getContext(),abc,Toast.LENGTH_SHORT).show();
+//
+//                ob.increment("rating_total");
+//                ob.saveInBackground();
+//
+//                    String abcn = ob.get("rating_total").toString();
+//                    Toast.makeText(v.getContext(),abcn,Toast.LENGTH_SHORT).show();
+//                }
+//
+//
+//          });
+////            ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+//
+//// Retrieve the object by id
+//
+////            query.getInBackground(userID, new GetCallback<ParseObject>() {
+////                public void done(ParseObject userInstance, ParseException e) {
+////                    if (e == null) {
+////                        // Now let's update it with some new data. In this case, only cheatMode and score
+////                        // will get sent to the Parse Cloud. playerName hasn't changed.
+////
+////                    }
+////
+////
+////
+////        }
+//        }
+//    }
+

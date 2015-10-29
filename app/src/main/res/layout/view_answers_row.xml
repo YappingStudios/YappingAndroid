@@ -7,7 +7,54 @@
         android:background="@color/YappingColor"
         android:textColor="@color/White"
         android:textSize="15sp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/view_answers_row_textview"/>
+        android:id="@+id/view_answers_row_textview"
+        android:text="NO ANSWERERS TO SHOW"
+        android:textStyle="normal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/YappingColor"
+        android:textColor="@color/White"
+        android:textSize="15sp"
+        android:id="@+id/view_answers_row_askerer_name"
+
+        android:text="[username]"
+        android:layout_alignParentRight="true"
+        />
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_answers_row_textview"
+        android:textOff="Promote!"
+        android:textOn="Demote!"
+        android:id="@+id/bPromote"
+        android:background="@drawable/rounded"
+        android:textColor="@color/YappingColor"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_margin="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/bPromote"
+        android:layout_alignBottom="@id/bPromote"
+        android:layout_toRightOf="@id/bPromote"
+
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="@drawable/rounded"
+        android:textColor="@color/YappingColor"
+        android:gravity="center"
+        android:id="@+id/answer_likes_textview"/>
+
+
 </RelativeLayout>

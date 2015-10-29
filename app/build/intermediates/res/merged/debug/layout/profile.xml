@@ -4,361 +4,361 @@
     android:layout_width="fill_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content" >
-<LinearLayout
-
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/YappingColor">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="PROFILE"
-        android:id="@+id/Heading_profile"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#fff"
-        android:textSize="35sp"/>
-
     <LinearLayout
+
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="5dp"
-        >
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:textSize="20sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Username"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/name"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:textColor="@color/White"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/YappingColor">
 
 
-                android:layout_centerHorizontal="true"
-                android:id="@+id/namefromparsetextview"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:background="@drawable/rounded"
-                android:textColor="@color/YappingColor"
-                android:padding="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:textSize="20sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="EMail"
-
-                android:layout_centerHorizontal="true"
-                android:id="@+id/emailtextview"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:textColor="@color/White"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-
-                android:layout_centerHorizontal="true"
-                android:id="@+id/emailfromparsetextview"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:background="@drawable/rounded"
-                android:textColor="@color/YappingColor"
-                android:padding="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="Interests"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/intereststextview_nonclickable"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:textColor="@color/White"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_centerHorizontal="true"
-
-                android:id="@+id/interestsfromparsetextview"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:background="@drawable/rounded"
-                android:textColor="@color/YappingColor"
-                android:padding="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
-
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Interests"
-            android:clickable="true"
-            android:onClick="afterClickingEditInterests"
-
-            android:padding="5dp"
-            android:id="@+id/intereststextview"
-            android:textColor="@color/YappingColor"
-            android:layout_gravity="center"
-            android:background="@drawable/rounded"
-            android:layout_marginTop="15dp"
-             />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="PROFILE"
+            android:id="@+id/Heading_profile"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#fff"
+            android:textSize="35sp"/>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp">
-
-            <TextView
-                android:textSize="20sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Total XP"
-                android:id="@+id/xptextview"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:textColor="@color/White"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-android:layout_gravity="right"
-                android:id="@+id/xpfromparse"
-
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:background="@drawable/rounded"
-                android:textColor="@color/YappingColor"
-                android:padding="5dp"
-                android:text="0 (XP currently disabled)"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="6dp">
-
-        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/foodRelLayout">
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="5dp"
+            >
 
-            <TextView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Food XP"
-                android:textSize="18sp"
-                android:id="@+id/foodXPtextview"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:textColor="@color/White" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
 
-              android:layout_toRightOf="@id/foodXPtextview"
-                android:layout_alignParentRight="true"
-                android:gravity="right"
-                android:id="@+id/foodXPfromParse"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded"
-                android:enabled="true"
-                android:textColor="@color/YappingColor"
+                <TextView
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/name"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/White"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/namefromparsetextview"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rounded"
+                    android:textColor="@color/YappingColor"
+                    android:padding="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="EMail"
+
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/emailtextview"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/White"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/emailfromparsetextview"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rounded"
+                    android:textColor="@color/YappingColor"
+                    android:padding="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Interests"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/intereststextview_nonclickable"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/White"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_centerHorizontal="true"
+
+                    android:id="@+id/interestsfromparsetextview"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rounded"
+                    android:textColor="@color/YappingColor"
+                    android:padding="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Interests"
+                android:clickable="true"
+                android:onClick="afterClickingEditInterests"
+
                 android:padding="5dp"
-                android:text="0 (XP currently disabled)"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:id="@+id/intereststextview"
+                android:textColor="@color/YappingColor"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded"
+                android:layout_marginTop="15dp"
+                />
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total XP"
+                    android:id="@+id/xptextview"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/White"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:id="@+id/xpfromparse"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rounded"
+                    android:textColor="@color/YappingColor"
+                    android:padding="5dp"
+                    android:text="0 (XP currently disabled)"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/eduRelLayout">
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="6dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Edu XP"
-                android:textSize="18sp"
-                android:id="@+id/eduXPtextview"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:textColor="@color/White" />
-            <TextView
+                android:orientation="horizontal"
+                android:id="@+id/foodRelLayout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Food XP"
+                    android:textSize="18sp"
+                    android:id="@+id/foodXPtextview"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/White" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_toRightOf="@id/foodXPtextview"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:id="@+id/foodXPfromParse"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded"
+                    android:enabled="true"
+                    android:textColor="@color/YappingColor"
+                    android:padding="5dp"
+                    android:text="0 (XP currently disabled)"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0 (XP currently disabled)"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:orientation="horizontal"
+                android:id="@+id/eduRelLayout">
 
-                android:layout_toRightOf="@id/eduXPtextview"
-                android:layout_alignParentRight="true"
-                android:gravity="right"
-                android:id="@+id/eduXPfromParse"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded"
-                android:enabled="true"
-                android:textColor="@color/YappingColor"
-                android:padding="5dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edu XP"
+                    android:textSize="18sp"
+                    android:id="@+id/eduXPtextview"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/White" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 (XP currently disabled)"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
 
+                    android:layout_toRightOf="@id/eduXPtextview"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:id="@+id/eduXPfromParse"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded"
+                    android:enabled="true"
+                    android:textColor="@color/YappingColor"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/travelRelLayout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Travel XP"
+                    android:textSize="18sp"
+                    android:id="@+id/travelXPtextview"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/White" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 (XP currently disabled)"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_toRightOf="@id/travelXPtextview"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:id="@+id/travelXPfromParse"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded"
+                    android:enabled="true"
+                    android:textColor="@color/YappingColor"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/techRelLayout">
+
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tech XP"
+                    android:id="@+id/TechXPtextview"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/White" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 (XP currently disabled)"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_toRightOf="@id/TechXPtextview"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:id="@+id/techXPfromParse"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded"
+                    android:enabled="true"
+                    android:textColor="@color/YappingColor"
+                    android:padding="5dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/lifestyleRelLayout">
+
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lifestyle XP"
+                    android:id="@+id/lifestyleXPtextview"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/White" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/lifestyleXPtextview"
+                    android:layout_alignParentRight="true"
+                    android:text="0 (XP currently disabled)"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:gravity="right"
+                    android:id="@+id/lifestyleXPfromParse"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded"
+                    android:enabled="true"
+                    android:textColor="@color/YappingColor"
+                    android:padding="5dp" />
+
+
+            </LinearLayout>
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-            android:id="@+id/travelRelLayout">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Travel XP"
-                android:textSize="18sp"
-                android:id="@+id/travelXPtextview"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:textColor="@color/White" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="0 (XP currently disabled)"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_toRightOf="@id/travelXPtextview"
-                android:layout_alignParentRight="true"
-                android:gravity="right"
-                android:id="@+id/travelXPfromParse"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded"
-                android:enabled="true"
-                android:textColor="@color/YappingColor"
-                android:padding="5dp" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-            android:id="@+id/techRelLayout">
-
-            <TextView
-                android:textSize="18sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tech XP"
-                android:id="@+id/TechXPtextview"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:textColor="@color/White" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="0 (XP currently disabled)"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_toRightOf="@id/TechXPtextview"
-                android:layout_alignParentRight="true"
-                android:gravity="right"
-                android:id="@+id/techXPfromParse"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded"
-                android:enabled="true"
-                android:textColor="@color/YappingColor"
-                android:padding="5dp" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-            android:id="@+id/lifestyleRelLayout">
-
-            <TextView
-                android:textSize="18sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lifestyle XP"
-                android:id="@+id/lifestyleXPtextview"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:textColor="@color/White" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/lifestyleXPtextview"
-                android:layout_alignParentRight="true"
-                android:text="0 (XP currently disabled)"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:gravity="right"
-                android:id="@+id/lifestyleXPfromParse"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded"
-                android:enabled="true"
-                android:textColor="@color/YappingColor"
-                android:padding="5dp" />
-
-
-        </LinearLayout>
-    </LinearLayout>
-
-
-</LinearLayout>
-</ScrollView><!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/layout/profile.xml -->
+</ScrollView><!-- From: file:/home/srikar/Yapping-master-revised/YappingAndroid/app/src/main/res/layout/profile.xml -->

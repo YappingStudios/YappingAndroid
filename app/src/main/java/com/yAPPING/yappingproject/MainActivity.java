@@ -31,6 +31,12 @@ public class MainActivity extends BaseActivity implements OnClickListener, Sinch
     private Menu menu;
 
     @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        System.out.print("Login Back Pressed");
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

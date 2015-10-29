@@ -2,4 +2,4 @@
     <item android:state_pressed="true" android:drawable="@drawable/call_pressed"/>
     <item android:state_pressed="false" android:drawable="@drawable/call_normal"/>
     <item android:drawable="@drawable/call_normal"/>
-</selector><!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/drawable/button_call.xml -->
+</selector><!-- From: file:/home/srikar/Yapping-master-revised/YappingAndroid/app/src/main/res/drawable/button_call.xml -->

@@ -109,4 +109,4 @@
         android:layout_above="@+id/linearLayout"
         android:background="@color/YappingColor" />
 
-</RelativeLayout><!-- From: file:/home/rohitt/Documents/Android/YappingAndroid/app/src/main/res/layout/sinch_main.xml -->
+</RelativeLayout><!-- From: file:/home/srikar/Yapping-master-revised/YappingAndroid/app/src/main/res/layout/sinch_main.xml -->

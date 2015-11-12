@@ -3,8 +3,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,9 +94,35 @@ public class Dialog_interests extends DialogFragment {
 
                                     userInstance.put("preferences", mSelectedItems);
                                     userInstance.saveInBackground();
+
+//                                    String categoryString = new String();
+//                                    if(mSelectedItems.contains(0)){
+//                                        categoryString = categoryString+"food;";
+//                                    }
+//                                    if(mSelectedItems.contains(1)){
+//                                        categoryString = categoryString+"travel;";
+//                                    }
+//                                    if(mSelectedItems.contains(2)){
+//                                        categoryString = categoryString+"lifestyle;";
+//                                    }
+//                                    if(mSelectedItems.contains(3)){
+//                                        categoryString = categoryString+"education;";
+//                                    }
+//                                    if(mSelectedItems.contains(4)){
+//                                        categoryString = categoryString+"tech;";
+//                                    }
+//
+//                                    TextView interestsfromParseTV = (TextView) getView().findViewById(R.id.interestsfromparsetextview);
+////                                    LayoutInflater inflater = LayoutInflater.from(getParentFragment().getActivity().getApplicationContext())
+//                                    interestsfromParseTV.setText(categoryString);
+
+
+
+
+
 //                                    Toast.makeText(getActivity(), "Preferences saved", Toast.LENGTH_SHORT).show();
 
-//                                    TextView interestsfromParseTV = (TextView) findViewById(R.id.interestsfromparsetextview);
+//                                    TextView interestsfromParseTV = (TextView) ProfileActivity.findViewById(R.id.interestsfromparsetextview);
 //                                    String big = new String() ;
 //                                    for(int count=0;count<mSelectedItems.size();count++){
 //                                        big = big+","+mSelectedItems.get(count);
@@ -118,4 +146,6 @@ public class Dialog_interests extends DialogFragment {
 
         return builder.create();
     }
+
+
 }

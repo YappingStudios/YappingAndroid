@@ -262,6 +262,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait..");
         progressDialog.setCancelable(false);
+        progressDialog.show();
 
         dialog_interests = new Dialog_interests_signup(questioncategorieschosen);
         ndstring = getResources().getStringArray(R.array.nd);
@@ -274,6 +275,17 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(Home.this, R.layout.drawer_view, ndstring);
         drawerlist.setAdapter(adapter);
         drawerlist.setOnItemClickListener(new DrawerItemListener());
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout,
+                (ViewGroup) findViewById(R.id.toast_layout_root));
+
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+//        toast.show();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -289,7 +301,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
              */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getActionBar().setTitle("Closed");
+                getActionBar().setTitle("Yapping");
             }
 
             /**
@@ -297,7 +309,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
              */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getActionBar().setTitle("Open");
+                getActionBar().setTitle("Yapping");
             }
         };
 
@@ -432,6 +444,8 @@ lvcontent.requestFocus();
         ad = new MyAdapter(stringDataFromParse,askerNamesFromParse);
         lvcontent.setAdapter(ad);
         lvcontent.setOnItemClickListener(new ContentItemListener());
+        progressDialog.dismiss();
+toast.show();
 
     }
 
@@ -661,8 +675,9 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
         convertView = inflater.inflate(R.layout.home_row, null);
         TextView textView = (TextView) convertView.findViewById(R.id.questions);
         Button answerButton = (Button) convertView.findViewById(R.id.banswerintext);
-        TextView askerNameTV = (TextView) convertView.findViewById(R.id.askername);
+        final TextView askerNameTV = (TextView) convertView.findViewById(R.id.askername);
         EditText topAnswer = (EditText) convertView.findViewById(R.id.topAnswer);
+        final TextView categoriesTV = (TextView) convertView.findViewById(R.id.questioncategory);
 
         Button viewAnswers1 = (Button) convertView.findViewById(R.id.bViewAnswers);
         answerButton.setOnClickListener(this);
@@ -670,6 +685,36 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
         Button bcallStart = (Button) convertView.findViewById(R.id.checkBox1);
         bcallStart.setOnClickListener(this);
         textView.setText(list.get(position));
+
+        ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("Questions");
+        q.whereEqualTo("question",list.get(position));
+        q.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                for(int i=0;i<list.size();i++){
+                    askerNameTV.setText(list.get(i).getString("username"));
+
+                    List<Integer> categoriesList= list.get(i).getList("categories");
+                    String categoryString = new String();
+                    if(categoriesList.contains(0)){
+                        categoryString = categoryString+"food;";
+                    }
+                    if(categoriesList.contains(1)){
+                        categoryString = categoryString+"travel;";
+                    }
+                    if(categoriesList.contains(2)){
+                        categoryString = categoryString+"lifestyle;";
+                    }
+                    if(categoriesList.contains(3)){
+                        categoryString = categoryString+"education;";
+                    }
+                    if(categoriesList.contains(4)){
+                        categoryString = categoryString+"tech;";
+                    }
+                    categoriesTV.setText(categoryString);
+                }
+            }
+        });
 //        topAnswer.setText(answers.get(position));
 //        askerNameTV.setText(askerNames.get(position));
         return convertView;

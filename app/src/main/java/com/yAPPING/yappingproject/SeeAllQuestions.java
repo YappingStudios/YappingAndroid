@@ -124,8 +124,9 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
         convertView = inflater.inflate(R.layout.home_row, null);
         TextView textView = (TextView) convertView.findViewById(R.id.questions);
         Button answerButton = (Button) convertView.findViewById(R.id.banswerintext);
-        TextView askerNameTV = (TextView) convertView.findViewById(R.id.askername);
+        final TextView askerNameTV = (TextView) convertView.findViewById(R.id.askername);
         EditText topAnswer = (EditText) convertView.findViewById(R.id.topAnswer);
+        final TextView categoriesTV = (TextView) convertView.findViewById(R.id.questioncategory);
 
         Button viewAnswers1 = (Button) convertView.findViewById(R.id.bViewAnswers);
         answerButton.setOnClickListener(this);
@@ -135,6 +136,35 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
         textView.setText(allQuest.get(position));
 //        topAnswer.setText(answers.get(position));
 //        askerNameTV.setText(askerNames.get(position));
+
+        ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("Questions");
+        q.whereEqualTo("question",allQuest.get(position));
+        q.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                for(int i=0;i<list.size();i++){
+                    askerNameTV.setText(list.get(i).getString("username"));
+                    List<Integer> categoriesList= list.get(i).getList("categories");
+                    String categoryString = new String();
+                    if(categoriesList.contains(0)){
+                        categoryString = categoryString+"food;";
+                    }
+                    if(categoriesList.contains(1)){
+                        categoryString = categoryString+"travel;";
+                    }
+                    if(categoriesList.contains(2)){
+                        categoryString = categoryString+"lifestyle;";
+                    }
+                    if(categoriesList.contains(3)){
+                        categoryString = categoryString+"education;";
+                    }
+                    if(categoriesList.contains(4)){
+                        categoryString = categoryString+"tech;";
+                    }
+                    categoriesTV.setText(categoryString);
+                }
+            }
+        });
         return convertView;
         
         
@@ -233,7 +263,6 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         input.setHorizontallyScrolling(false);
         input.setVerticalScrollBarEnabled(true);
-
         input.setLines(5);
         builder.setView(input);
 

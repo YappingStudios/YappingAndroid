@@ -20,8 +20,11 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class SeeAllQuestions extends Activity {
     List<ParseObject> ob;
     ListView seeAllQuest;
     private String userAnswer;
+    ParseUser currentUser = ParseUser.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +94,7 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
     List<String> allQuest;
     ParseObject answerInText = new ParseObject("AnswerInText");
     public String questionCorresponding;
+    ParseUser currentUser = ParseUser.getCurrentUser();
 
     AllQuestAdapter(List<String> list) {
         this.allQuest = list;
@@ -114,17 +119,23 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         convertView = inflater.inflate(R.layout.home_row, null);
         TextView textView = (TextView) convertView.findViewById(R.id.questions);
         Button answerButton = (Button) convertView.findViewById(R.id.banswerintext);
+        TextView askerNameTV = (TextView) convertView.findViewById(R.id.askername);
+        EditText topAnswer = (EditText) convertView.findViewById(R.id.topAnswer);
+
         Button viewAnswers1 = (Button) convertView.findViewById(R.id.bViewAnswers);
         answerButton.setOnClickListener(this);
         viewAnswers1.setOnClickListener(this);
-
+        Button bcallStart = (Button) convertView.findViewById(R.id.checkBox1);
+        bcallStart.setOnClickListener(this);
         textView.setText(allQuest.get(position));
+//        topAnswer.setText(answers.get(position));
+//        askerNameTV.setText(askerNames.get(position));
         return convertView;
-        
         
         
     }
@@ -179,7 +190,7 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     private void ViewAnswersMethod(View view) {
-
+        String questionCorresponding = new String();
 
         Intent iViewAnswers = new Intent(view.getContext(), ViewAnswers.class);
 
@@ -192,7 +203,7 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
                 if (childView.getId() == R.id.questions) {
                     TextView textview = (TextView) childView;
 //                            System.out.println(textview.getText().toString().trim());
-                    questionCorresponding=textview.getText().toString();
+                    questionCorresponding = textview.getText().toString();
 //                answerInText.put("question1", questionCorresponding);
                 }
             }
@@ -204,7 +215,6 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
         view.getContext().startActivity(iViewAnswers);
 
     }
-
     private void answerForQuestion(final View view) {
         //        int position = (Integer)v.getTag();
 //        Toast.makeText(this,position+"",Toast.LENGTH_LONG).show();
@@ -221,16 +231,26 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
 //        input.setLayoutParams(lp);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setHorizontallyScrolling(false);
+        input.setVerticalScrollBarEnabled(true);
+
+        input.setLines(5);
         builder.setView(input);
 
 // Set up the buttons
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            String questionCorresponding = new String();
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String userAnswer = input.getText().toString();
-                //Toast.makeText(view.getContext(), userAnswer, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(view.getContext(), userAnswer, Toast.LENGTH_SHORT).show();
 //                ParseObject answerInText = new ParseObject("AnswerInText");
+                ParseObject answerInText = new ParseObject("AnswerInText");
                 answerInText.put("answers", userAnswer);
+                answerInText.put("answerer_name", currentUser.getUsername().toString());
+                answerInText.put("answer_likes",0);
+                answerInText.put("togglestate",false);
                 // answerInText.put("who is answering", currentUser);
 
 //        answerInText.put("whose question",);
@@ -244,19 +264,80 @@ class AllQuestAdapter extends BaseAdapter implements View.OnClickListener {
                         if (childView.getId() == R.id.questions) {
                             TextView textview = (TextView) childView;
 //                            System.out.println(textview.getText().toString().trim());
-                            questionCorresponding=textview.getText().toString();
+                            questionCorresponding = textview.getText().toString();
                             answerInText.put("question1", questionCorresponding);
+
                         }
                     }
 
                 }
                 answerInText.saveInBackground();
+//                personAskingQuestion = new String();
+
+//                ParseQuery<ParseObject> query = new ParseQuery("Questions");
+//                query.whereEqualTo("question", questionCorresponding);
+//                query.findInBackground(new FindCallback<ParseObject>() {
+//
+//
+//                    public void done(List<ParseObject> scoreList, ParseException e) {
+////                        personAskingQuestion = scoreList.get(0).getString("username");
+//
+//                    }
+//
+//
+//                });
+//
+//
+//
+//                ParseQuery<ParseObject> query1 = new ParseQuery("_User");
+////                Toast.makeText(view.getContext(),personAskingQuestion,Toast.LENGTH_SHORT).show();
+////                query1.whereEqualTo("username", personAskingQuestion);
+//                query1.whereEqualTo("username", currentUser.getUsername());
+//                query1.findInBackground(new FindCallback<ParseObject>() {
+//                    public void done(List<ParseObject> scoreList, ParseException e) {
+//                       String installation_id =  scoreList.get(0).getString("installation_id");
+
+
+                ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("Questions");
+                q.whereEqualTo("question", questionCorresponding);
+                q.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> list, ParseException e) {
+                        for (int i = 0; i < list.size(); i++) {
+                            ParseObject ob = list.get(i);
+                            String name = ob.getString("username");
+                            ParseQuery<ParseObject> qq = new ParseQuery<ParseObject>("_User");
+                            qq.whereEqualTo("username", name);
+                            qq.findInBackground(new FindCallback<ParseObject>() {
+                                @Override
+                                public void done(List<ParseObject> listt, ParseException e) {
+                                    for (int ii = 0; ii < listt.size(); ii++) {
+                                        ParseObject obb = listt.get(ii);
+                                        String installation_id = obb.getString("installation_id");
+                                        ParseQuery query2 = ParseInstallation.getQuery();
+                                        query2.whereEqualTo("installationId", installation_id);
+                                        ParsePush gotAnsPush = new ParsePush();
+                                        gotAnsPush.setQuery(query2);
+                                        gotAnsPush.setMessage("Your question got an answer");
+                                        gotAnsPush.sendInBackground();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
+
             }
 
+
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+
+
+        builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog,int which){
                 dialog.cancel();
             }
         });

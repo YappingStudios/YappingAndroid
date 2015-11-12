@@ -262,7 +262,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait..");
         progressDialog.setCancelable(false);
-        progressDialog.show();
+//        progressDialog.show();
 
         dialog_interests = new Dialog_interests_signup(questioncategorieschosen);
         ndstring = getResources().getStringArray(R.array.nd);
@@ -444,7 +444,7 @@ lvcontent.requestFocus();
         ad = new MyAdapter(stringDataFromParse,askerNamesFromParse);
         lvcontent.setAdapter(ad);
         lvcontent.setOnItemClickListener(new ContentItemListener());
-        progressDialog.dismiss();
+//        progressDialog.dismiss();
 toast.show();
 
     }

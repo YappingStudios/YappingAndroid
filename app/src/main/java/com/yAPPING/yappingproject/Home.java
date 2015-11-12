@@ -754,6 +754,7 @@ class MyAdapter extends BaseAdapter implements OnClickListener {
                 answerInText.put("answers", userAnswer);
                 answerInText.put("answerer_name", currentUser.getUsername().toString());
                 answerInText.put("answer_likes",0);
+                answerInText.put("togglestate",false);
                 // answerInText.put("who is answering", currentUser);
 
 //        answerInText.put("whose question",);

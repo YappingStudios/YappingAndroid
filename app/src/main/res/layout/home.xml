@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/bAsk"
+                android:layout_below="@+id/bsetpreferencesbeforeask"
                 android:dividerHeight="5dp"
                 android:divider="@color/White"
                 android:background="@drawable/rounded"
@@ -52,24 +52,6 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true">
             </ListView>
-
-            <Button
-                android:id="@+id/bsetpreferencesbeforeask"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignRight="@id/strut"
-
-                android:layout_below="@id/etQuestion"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/rounded"
-                android:text="Set Category"
-                android:textColor="@color/YappingColor"
-                android:visibility="gone"
-                android:onClick="displayCategory"
-                android:layout_marginRight="5dp" />
             <Button
                 android:id="@+id/bAsk"
                 android:layout_width="match_parent"
@@ -85,6 +67,24 @@
                 android:textColor="@color/YappingColor"
                 android:visibility="gone"
                 android:layout_marginRight="5dp" />
+            <Button
+                android:id="@+id/bsetpreferencesbeforeask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+
+
+                android:layout_below="@id/bAsk"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded"
+                android:text="Set Category"
+                android:textColor="@color/YappingColor"
+                android:visibility="gone"
+                android:onClick="displayCategory"
+                android:layout_marginRight="5dp" />
+
 
             <Button
                 android:id="@+id/bCancel"

@@ -7,7 +7,7 @@
     android:fromYScale="1"
     android:pivotX="50%"
     android:pivotY="50%"
-    android:toXScale="1.8"
-    android:toYScale="1.8"
+    android:toXScale="1.4"
+    android:toYScale="1.4"
     >
 </scale><!-- From: file:/home/srikar/Yapping-master-revised/YappingAndroid/app/src/main/res/anim/zoomin.xml -->

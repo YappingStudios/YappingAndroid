@@ -400,7 +400,7 @@ public final class R {
         public static final int answerBy=0x7f0d0024;
         public static final int answer_likes_textview=0x7f0d0064;
         public static final int askername=0x7f0d0022;
-        public static final int bAsk=0x7f0d001a;
+        public static final int bAsk=0x7f0d001b;
         public static final int bCancel=0x7f0d001c;
         public static final int bPromote=0x7f0d0063;
         public static final int bSignIn=0x7f0d0003;
@@ -409,7 +409,7 @@ public final class R {
         public static final int bdel_answers_row_textview=0x7f0d002f;
         public static final int blackborder=0x7f0d0027;
         public static final int bottomPanel=0x7f0d0008;
-        public static final int bsetpreferencesbeforeask=0x7f0d001b;
+        public static final int bsetpreferencesbeforeask=0x7f0d001a;
         public static final int button2=0x7f0d004d;
         public static final int bview_answers_myqestions_row=0x7f0d002e;
         public static final int callButton=0x7f0d005b;

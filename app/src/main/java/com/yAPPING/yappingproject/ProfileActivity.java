@@ -1,5 +1,6 @@
 package com.yAPPING.yappingproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
@@ -74,39 +75,27 @@ public class ProfileActivity extends FragmentActivity {
             String email1 = currentUser.getEmail();
             emailid.setText(email1);
 
-            List<Integer> preferenceNumbers=currentUser.getList("preferences");
-            List<String> preferenceStrings = new ArrayList<String>();
-            if(preferenceNumbers!=null){
-                for(int counter=0;counter<preferenceNumbers.size();counter++){
-                    switch (preferenceNumbers.get(counter)){
-                        case 0:
-                            preferenceStrings.add("food");
-                            break;
-                        case 1:
-                            preferenceStrings.add("travel");
-                            break;
-                        case 2:
-                            preferenceStrings.add("lifestyle");
-                            break;
-                        case 3:
-                            preferenceStrings.add("education");
-                            break;
-                        case 4:
-                            preferenceStrings.add("tech");
-                            break;
-                    }
-                }
+            List<Integer> categoriesList =currentUser.getList("preferences");
+            String categoryString = new String();
+            if(categoriesList.contains(0)){
+                categoryString = categoryString+"food;";
             }
-            else{
-                Toast.makeText(this,"No preferecnes",Toast.LENGTH_SHORT).show();
+            if(categoriesList.contains(1)){
+                categoryString = categoryString+"travel;";
+            }
+            if(categoriesList.contains(2)){
+                categoryString = categoryString+"lifestyle;";
+            }
+            if(categoriesList.contains(3)){
+                categoryString = categoryString+"education;";
+            }
+            if(categoriesList.contains(4)){
+                categoryString = categoryString+"tech;";
             }
 
             TextView interestsfromParseTV = (TextView) findViewById(R.id.interestsfromparsetextview);
-            String big = new String() ;
-            for(int count=0;count<preferenceStrings.size();count++){
-                big = big+","+preferenceStrings.get(count);
-            }
-            interestsfromParseTV.setText(big);
+
+            interestsfromParseTV.setText(categoryString);
 
 //            emailid.setText(email1);
 //            String edurating = currentUser.get("rating_education").toString();
@@ -159,6 +148,39 @@ public class ProfileActivity extends FragmentActivity {
 //        Toast.makeText(v.getContext(),"This is food rating"+foodrating,Toast.LENGTH_SHORT).show();
         if(currentUser != null){
             dialog_interests.show(getSupportFragmentManager(),"chooseinterests");
+            while(dialog_interests.isVisible()){
+                System.out.print("Do Nothing");
+            }
+            Toast.makeText(this,"Preferences will be saved when confirm pressed,click back to refresh",Toast.LENGTH_LONG).show();
+            List<Integer> categoriesList =currentUser.getList("preferences");
+            String categoryString = new String();
+            if(categoriesList.contains(0)){
+                categoryString = categoryString+"food;";
+            }
+            if(categoriesList.contains(1)){
+                categoryString = categoryString+"travel;";
+            }
+            if(categoriesList.contains(2)){
+                categoryString = categoryString+"lifestyle;";
+            }
+            if(categoriesList.contains(3)){
+                categoryString = categoryString+"education;";
+            }
+            if(categoriesList.contains(4)){
+                categoryString = categoryString+"tech;";
+            }
+
+            TextView interestsfromParseTV = (TextView) findViewById(R.id.interestsfromparsetextview);
+
+            interestsfromParseTV.setText(categoryString);
+
+
+
+
+
+
+
+
 
 //    String userID = currentUser.getObjectId().toString();
             // Create a pointer to an object of class Point with id dlkj83d

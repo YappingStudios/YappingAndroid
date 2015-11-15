@@ -1,6 +1,7 @@
 package com.yAPPING.yappingproject;
 
 import android.app.ActionBar;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -17,10 +18,16 @@ public class MustKnow extends FragmentActivity {
     // representing an object in the collection.
     DemoCollectionPagerAdapter mDemoCollectionPagerAdapter;
     ViewPager mViewPager;
+    private ProgressDialog progressDialog;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.must_know);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait..");
+        progressDialog.setCancelable(false);
+
+//        progressDialog.show();
 
         ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 
@@ -112,8 +119,9 @@ public class MustKnow extends FragmentActivity {
                         .setText("Education")
                         .setTabListener(tabListener));
 
+progressDialog.dismiss();
+    }
 
-    }
-    }
+}
 
 

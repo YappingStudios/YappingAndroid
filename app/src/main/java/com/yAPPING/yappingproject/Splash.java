@@ -9,6 +9,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by srikar on 20/9/15.
  */
@@ -25,7 +28,7 @@ public class Splash extends Activity{
         splashImage.setAnimation(zoomin);
         splashImage.startAnimation(zoomin);
 
-        splashImage.setOnTouchListener(new View.OnTouchListener() {
+       /* splashImage.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 Intent a= new Intent(Splash.this,MainActivity.class);
@@ -33,7 +36,22 @@ public class Splash extends Activity{
                 finish();
                 return false;
             }
-        });
+        });   */
+        TimerTask task = new TimerTask() {
 
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(Splash.this, MainActivity.class);
+                startActivity(intent);
+                finishscreen();
+            }
+        };
+        Timer t = new Timer();
+        t.schedule(task, 2000);
+
+    }
+    private void finishscreen() {
+        this.finish();
     }
 }

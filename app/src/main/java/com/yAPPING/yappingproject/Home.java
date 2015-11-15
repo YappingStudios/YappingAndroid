@@ -144,11 +144,14 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
         switch (item.getItemId()) {
             case R.id.addprofile:
                 Intent iprofile = new Intent(this, ProfileActivity.class);
                 startActivity(iprofile);
-
                 break;
             case R.id.logout:
                 Intent ilogin = new Intent(this, MainActivity.class);
@@ -160,7 +163,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
                 break;
 
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     private void shareFunctionality() {
@@ -281,10 +284,10 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
                 (ViewGroup) findViewById(R.id.toast_layout_root));
 
 
-        Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        toast.setDuration(Toast.LENGTH_LONG);
-        toast.setView(layout);
+//        Toast toast = new Toast(getApplicationContext());
+//        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+//        toast.setDuration(Toast.LENGTH_LONG);
+//        toast.setView(layout);
 //        toast.show();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
@@ -301,7 +304,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
              */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getActionBar().setTitle("Yapping");
+                getActionBar().setTitle("yAPPING");
             }
 
             /**
@@ -309,7 +312,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
              */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getActionBar().setTitle("Yapping");
+                getActionBar().setTitle("yAPPING");
             }
         };
 
@@ -318,7 +321,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-
+getActionBar().show();
 
 
 
@@ -408,7 +411,7 @@ public class Home extends FragmentActivity implements OnItemClickListener, OnCli
 //                drawerlistener.syncState();
 //            }
 //        });
-lvcontent.requestFocus();
+//lvcontent.requestFocus();
 
         ask.setOnClickListener(new OnClickListener() {
 
@@ -445,7 +448,7 @@ lvcontent.requestFocus();
         lvcontent.setAdapter(ad);
         lvcontent.setOnItemClickListener(new ContentItemListener());
 //        progressDialog.dismiss();
-toast.show();
+//toast.show();
 
     }
 
@@ -478,27 +481,32 @@ toast.show();
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            progressDialog.show();
+//            progressDialog.show();
             System.out.println("ON ITEM CLICK");
             String clickedItem = ndstring[position].trim();
 //            Toast.makeText(Home.this, clickedItem + " clicked", Toast.LENGTH_LONG).show();
             if (clickedItem.equalsIgnoreCase("Must Know")) {
+             progressDialog.show();
                 Intent iMustknow = new Intent(Home.this, MustKnow.class);
                 startActivity(iMustknow);
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             } else if (clickedItem.equals("See All questions")) {
+                progressDialog.show();
                 Intent iSeeAllQuestions = new Intent(Home.this, SeeAllQuestions.class);
                 startActivity(iSeeAllQuestions);
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             } else if (clickedItem.equals("My Questions")) {
+                progressDialog.show();
                 Intent iMyQuestions = new Intent(Home.this, MyQuestions.class);
                 startActivity(iMyQuestions);
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             } else if (clickedItem.equals("FAQs")) {
+                progressDialog.show();
                 Intent iFAQs = new Intent(Home.this, FAQs.class);
                 startActivity(iFAQs);
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             }
+        progressDialog.dismiss();
         }
     }
 

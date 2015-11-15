@@ -2,6 +2,7 @@ package com.yAPPING.yappingproject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,12 +39,17 @@ public class SeeAllQuestions extends Activity {
     ListView seeAllQuest;
     private String userAnswer;
     ParseUser currentUser = ParseUser.getCurrentUser();
+    private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.see_all_questions);
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait..");
+        progressDialog.setCancelable(false);
+//        progressDialog.show();
         seeAllQuest = (ListView) findViewById(R.id.seeallquestlistView);
         stringDataFromParse = new ArrayList<String>();
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
@@ -60,7 +66,7 @@ public class SeeAllQuestions extends Activity {
             stringDataFromParse.add((String) country.get("question"));
         }
         seeAllQuest.setAdapter(new AllQuestAdapter(stringDataFromParse));
-
+progressDialog.dismiss();
     }
     public void answerInText(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

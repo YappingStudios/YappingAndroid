@@ -33,12 +33,17 @@ public class MyQuestions extends Activity {
     ArrayList<String> stringMyQuestions;
     String currentUsername;
     ProgressDialog mProgressDialog;
-
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_questions);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait..");
+        progressDialog.setCancelable(false);
+//    progressDialog.show();
 
         stringMyQuestions = new ArrayList<String>();
         myquestionslv = (ListView) findViewById(R.id.myquestionslistView);
@@ -73,6 +78,7 @@ mProgressDialog.setMessage("Please wait");
 //        Toast.makeText(this,"hi",Toast.LENGTH_SHORT).show();
 //    stringMyQuestions.add("forceadd");
 
+    progressDialog.dismiss();
     }
 
     @Override

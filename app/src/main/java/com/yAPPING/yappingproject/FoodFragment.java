@@ -23,7 +23,8 @@ import java.util.List;
 public class FoodFragment extends Fragment implements AdapterView.OnItemClickListener {
     //public static final String ARG_OBJECT = "object";
     ListView foodlv;
-    List<String> foodStringDataFromParse;
+    List<String> foodStringDataFromParseans;
+    List<String> foodStringDataFromParseques;
     List<ParseObject> ob;
 
     @Override
@@ -38,10 +39,11 @@ public class FoodFragment extends Fragment implements AdapterView.OnItemClickLis
 
 //        parse data
 
-        foodStringDataFromParse = new ArrayList<String>();
+        foodStringDataFromParseans = new ArrayList<String>();
+        foodStringDataFromParseques = new ArrayList<String>();
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "MustKnowFood");
-        query.orderByDescending("createdAt");
+        query.orderByAscending("createdAt");
         try {
             ob = query.find();
         } catch (ParseException e) {
@@ -49,7 +51,8 @@ public class FoodFragment extends Fragment implements AdapterView.OnItemClickLis
             e.printStackTrace();
         }
         for (ParseObject country : ob) {
-            foodStringDataFromParse.add((String) country.get("mustknowfood"));
+            foodStringDataFromParseans.add((String) country.get("mustknowfoodans"));
+            foodStringDataFromParseques.add((String) country.get("mustknowfoodques"));
 
 
         }
@@ -67,7 +70,7 @@ public class FoodFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         foodlv = (ListView) view.findViewById(R.id.FoodListView);
-        foodlv.setAdapter(new MyAdapterFoodMustKnow(foodStringDataFromParse));
+        foodlv.setAdapter(new MyAdapterFoodMustKnow(foodStringDataFromParseques,foodStringDataFromParseans));
         foodlv.setOnItemClickListener(this);
 
 
@@ -80,20 +83,22 @@ public class FoodFragment extends Fragment implements AdapterView.OnItemClickLis
 }
 
 class MyAdapterFoodMustKnow extends BaseAdapter {
-    List<String> FMK;
-    MyAdapterFoodMustKnow(List<String> list){
-        this.FMK=list;
+    List<String> FMKques;
+    List<String> FMKans;
+    MyAdapterFoodMustKnow(List<String> list,List<String> list1){
+        this.FMKques=list;
+        this.FMKans=list1;
     }
 
 
     @Override
     public int getCount() {
-        return FMK.size();
+        return FMKques.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return FMK.get(position);
+        return FMKques.get(position);
     }
 
     @Override
@@ -105,8 +110,10 @@ class MyAdapterFoodMustKnow extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         convertView = inflater.inflate(R.layout.food_mustknow_row, null);
-        TextView textView = (TextView) convertView.findViewById(R.id.food_mustknow_row_textview);
-        textView.setText(FMK.get(position));
+        TextView textViewques = (TextView) convertView.findViewById(R.id.food_mustknow_row_textview_ques);
+        textViewques.setText(FMKques.get(position));
+        TextView textViewans = (TextView) convertView.findViewById(R.id.food_mustknow_row_textview_ans);
+        textViewans.setText(FMKans.get(position));
         return convertView;
     }
 }

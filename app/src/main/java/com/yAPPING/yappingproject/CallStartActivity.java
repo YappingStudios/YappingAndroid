@@ -15,8 +15,8 @@ import com.sinch.android.rtc.calling.Call;
 public class CallStartActivity extends BaseActivity {
     private Button mCallButton;
     private TextView mCallName;
-ParseUser currentUser = ParseUser.getCurrentUser();
-    private String askerNameFromIntent;
+    ParseUser currentUser = ParseUser.getCurrentUser();
+    String askerNameFromIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

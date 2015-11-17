@@ -506,6 +506,12 @@ getActionBar().show();
                 startActivity(iFAQs);
 //                progressDialog.dismiss();
             }
+            else if(clickedItem.equals("My Answers")){
+                progressDialog.show();
+                Intent iMyAnswers = new Intent(Home.this,MyAnswers.class);
+                startActivity(iMyAnswers);
+//                progressDialog.dismiss();
+            }
         progressDialog.dismiss();
         }
     }

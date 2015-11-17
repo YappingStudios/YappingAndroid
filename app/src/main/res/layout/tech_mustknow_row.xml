@@ -4,8 +4,20 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/tech_mustknow_row_textview"
+    android:id="@+id/tech_mustknow_row_textview_ques"
     android:background="@color/YappingColor"
     android:textColor="@color/White"
-    android:textSize="15sp"/>/>
+    android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tech_mustknow_row_textview_ans"
+        android:background="@color/YappingColor"
+        android:textColor="@color/AntiqueWhite"
+        android:textSize="15sp"
+        android:layout_below="@id/tech_mustknow_row_textview_ques"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"/>
+
 </RelativeLayout>

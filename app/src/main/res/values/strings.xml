@@ -19,8 +19,9 @@
     <string-array name="nd">
         <item> Must Know</item>
         <item> See All questions</item>
-        <item> My Questions</item>
         <item> FAQs</item>
+        <item> My Questions</item>
+        <item> My Answers</item>
     </string-array>
 
     <string name="chooseInterests">Select the required items</string>

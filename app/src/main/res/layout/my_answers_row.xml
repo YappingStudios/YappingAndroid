@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/YappingColor">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/myanswers_row_question"
+    android:background="@color/YappingColor"
+    android:textColor="@color/White"
+    android:textSize="20sp"
+    android:layout_marginLeft="5dp"
+
+  android:text="question"  />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myanswers_row_answer"
+        android:layout_below="@id/myanswers_row_question"
+        android:text="answer"
+        android:background="@color/YappingColor"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete answer"
+        android:layout_below="@id/myanswers_row_answer"
+        android:id="@+id/myanswers_row_deletebutton"
+        android:padding="3dp"
+        android:background="@drawable/rounded"
+        android:textColor="@color/YappingColor"
+        android:layout_marginLeft="10dp"/>
+</RelativeLayout>

@@ -21,7 +21,8 @@ import java.util.List;
 public class TechFragment extends Fragment implements AdapterView.OnItemClickListener {
     //public static final String ARG_OBJECT = "object";
     ListView techlv;
-    List<String> techStringDataFromParse;
+    List<String> techStringDataFromParseques;
+    List<String> techStringDataFromParseans;
     List<ParseObject> ob;
 
     @Override
@@ -36,7 +37,8 @@ public class TechFragment extends Fragment implements AdapterView.OnItemClickLis
 
 //        parse data
 
-        techStringDataFromParse = new ArrayList<String>();
+        techStringDataFromParseques = new ArrayList<String>();
+        techStringDataFromParseans = new ArrayList<String>();
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "MustKnowTech");
         query.orderByDescending("createdAt");
@@ -47,13 +49,14 @@ public class TechFragment extends Fragment implements AdapterView.OnItemClickLis
             e.printStackTrace();
         }
         for (ParseObject country : ob) {
-            techStringDataFromParse.add((String) country.get("mustknowtech"));
+            techStringDataFromParseques.add((String) country.get("mustknowtechques"));
+            techStringDataFromParseans.add((String) country.get("mustknowtechans"));
 
 
         }
 
         techlv = (ListView) rootView.findViewById(R.id.techListView);
-        techlv.setAdapter(new MyAdapterLifestyleMustKnow(techStringDataFromParse));
+        techlv.setAdapter(new MyAdapterTechMustKnow(techStringDataFromParseques,techStringDataFromParseans));
         techlv.setOnItemClickListener(this);
         return rootView;
 
@@ -69,20 +72,25 @@ public class TechFragment extends Fragment implements AdapterView.OnItemClickLis
 }
 
 class MyAdapterTechMustKnow extends BaseAdapter {
-    List<String> TMK;
-    MyAdapterTechMustKnow(List<String> list){
-        this.TMK=list;
+    List<String> TMKques;
+    List<String> TMKans;
+    MyAdapterTechMustKnow(List<String> list,List<String> list1){
+        this.TMKques=list;
+        this.TMKans=list1;
+
     }
 
 
     @Override
     public int getCount() {
-        return TMK.size();
+        return TMKques.size();
+
+
     }
 
     @Override
     public Object getItem(int position) {
-        return TMK.get(position);
+        return TMKques.get(position);
     }
 
     @Override
@@ -94,8 +102,10 @@ class MyAdapterTechMustKnow extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         convertView = inflater.inflate(R.layout.tech_mustknow_row, null);
-        TextView textView = (TextView) convertView.findViewById(R.id.tech_mustknow_row_textview);
-        textView.setText(TMK.get(position));
+        TextView textView = (TextView) convertView.findViewById(R.id.tech_mustknow_row_textview_ques);
+        TextView textViewans = (TextView) convertView.findViewById(R.id.tech_mustknow_row_textview_ans);
+        textView.setText(TMKques.get(position));
+        textViewans.setText(TMKans.get(position));
         return convertView;
     }
 }

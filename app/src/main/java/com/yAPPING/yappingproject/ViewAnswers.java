@@ -201,11 +201,11 @@ class ViewAnswersAdapter extends BaseAdapter {
         });
 
         bPromote.setOnClickListener(new View.OnClickListener() {
-            int clickcounter=0;
+//            int clickcounter=0;
             @Override
             public void onClick(final View v) {
-                clickcounter++;
-                Toast.makeText(v.getContext(),questionclicked+position,Toast.LENGTH_SHORT).show();
+//                clickcounter++;
+//                Toast.makeText(v.getContext(),questionclicked+position,Toast.LENGTH_SHORT).show();
                 RelativeLayout parent = (RelativeLayout) v.getParent();
                 for (int i = 0; i < parent.getChildCount(); i++) {
                     View childview = parent.getChildAt(i);
@@ -222,7 +222,7 @@ class ViewAnswersAdapter extends BaseAdapter {
                                         ParseObject ob = list.get(j);
                                         int totalXP = ob.getInt("totalXP");
                                         if (bPromote.getText().equals("Demote!")) {
-                                              Toast.makeText(v.getContext(),questionclicked+position,Toast.LENGTH_SHORT).show();
+//                                              Toast.makeText(v.getContext(),questionclicked+position,Toast.LENGTH_SHORT).show();
 //                                            ParseQuery<ParseObject> qq = new ParseQuery<ParseObject>("Key_value");
 //                                            qq.whereEqualTo("key", questionclicked + position);
 //                                            qq.findInBackground(new FindCallback<ParseObject>() {
@@ -249,9 +249,9 @@ class ViewAnswersAdapter extends BaseAdapter {
 //                                            SharedPreferences.Editor editor = preferences.edit();
 //                                            editor.putBoolean("tgpref" + position, true); // value to store
 //                                            editor.commit();
-                                            Toast.makeText(v.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(v.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
                                             totalXP++;
-                                            Toast.makeText(v.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(v.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
                                             ob.put("totalXP", totalXP);
                                             ob.saveInBackground();
                                             bPromote.setTag(questionclicked);
@@ -288,7 +288,7 @@ class ViewAnswersAdapter extends BaseAdapter {
                                                                         public void done(List<ParseObject> listnew, ParseException e) {
                                                                             if (listnew.isEmpty()) {
                                                                                 ParseObject puserobj = new ParseObject("AnswerInText"+currentUser);
-                                                                                Toast.makeText(v.getContext(),"finished creating a new class for:"+currentUser,Toast.LENGTH_SHORT).show();
+//                                                                                Toast.makeText(v.getContext(),"finished creating a new class for:"+currentUser,Toast.LENGTH_SHORT).show();
                                                                                 puserobj.put("answers", answer);
                                                                                 puserobj.put("question1", questionclicked);
                                                                                 puserobj.put("answerer_name", XPName);
@@ -333,9 +333,9 @@ class ViewAnswersAdapter extends BaseAdapter {
 //                                            SharedPreferences.Editor editor = preferences.edit();
 //                                            editor.putBoolean("tgpref" + position, false); // value to store
 //                                            editor.commit();
-                                            Toast.makeText(v.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(v.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
                                             totalXP--;
-                                            Toast.makeText(v.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(v.getContext(), totalXP + "", Toast.LENGTH_SHORT).show();
                                             ob.put("totalXP", totalXP);
                                             ob.saveInBackground();
 //                                            bPromote.setTag(questionclicked);

@@ -21,7 +21,8 @@ import java.util.List;
 public class TravelFragment extends Fragment implements AdapterView.OnItemClickListener {
     //public static final String ARG_OBJECT = "object";
     ListView travellv;
-    List<String> travelStringDataFromParse;
+    List<String> travelStringDataFromParseques;
+    List<String> travelStringDataFromParseans;
     List<ParseObject> ob;
 
     @Override
@@ -36,10 +37,11 @@ public class TravelFragment extends Fragment implements AdapterView.OnItemClickL
 
 //        parse data
 
-        travelStringDataFromParse = new ArrayList<String>();
+        travelStringDataFromParseques = new ArrayList<String>();
+        travelStringDataFromParseans = new ArrayList<String>();
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "MustKnowTravel");
-        query.orderByDescending("createdAt");
+        query.orderByAscending("createdAt");
         try {
             ob = query.find();
         } catch (ParseException e) {
@@ -47,7 +49,8 @@ public class TravelFragment extends Fragment implements AdapterView.OnItemClickL
             e.printStackTrace();
         }
         for (ParseObject country : ob) {
-            travelStringDataFromParse.add((String) country.get("mustknowtravel"));
+            travelStringDataFromParseques.add((String) country.get("mustknowtravelques"));
+            travelStringDataFromParseans.add((String) country.get("mustknowtravelans"));
 
 
         }
@@ -65,7 +68,7 @@ public class TravelFragment extends Fragment implements AdapterView.OnItemClickL
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         travellv = (ListView) view.findViewById(R.id.TravelListView);
-        travellv.setAdapter(new MyAdapterTravelMustKnow(travelStringDataFromParse));
+        travellv.setAdapter(new MyAdapterTravelMustKnow(travelStringDataFromParseques,travelStringDataFromParseans));
         travellv.setOnItemClickListener(this);
 
 
@@ -78,20 +81,23 @@ public class TravelFragment extends Fragment implements AdapterView.OnItemClickL
 }
 
 class MyAdapterTravelMustKnow extends BaseAdapter {
-    List<String> TMK;
-    MyAdapterTravelMustKnow(List<String> list){
-        this.TMK=list;
+    List<String> TMKques;
+    List<String> TMKans;
+    MyAdapterTravelMustKnow(List<String> list,List<String> list1){
+        this.TMKques=list;
+        this.TMKans=list1;
+
     }
 
 
     @Override
     public int getCount() {
-        return TMK.size();
+        return TMKques.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return TMK.get(position);
+        return TMKques.get(position);
     }
 
     @Override
@@ -103,8 +109,10 @@ class MyAdapterTravelMustKnow extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         convertView = inflater.inflate(R.layout.travel_mustknow_row, null);
-        TextView textView = (TextView) convertView.findViewById(R.id.travel_mustknow_row_textview);
-        textView.setText(TMK.get(position));
+        TextView textView = (TextView) convertView.findViewById(R.id.travel_mustknow_row_textview_ques);
+        TextView textViewans = (TextView) convertView.findViewById(R.id.travel_mustknow_row_textview_ans);
+        textView.setText(TMKques.get(position));
+        textViewans.setText(TMKans.get(position));
         return convertView;
     }
 }

@@ -21,7 +21,8 @@ import java.util.List;
 public class LifestyleFragment extends Fragment implements AdapterView.OnItemClickListener {
     //public static final String ARG_OBJECT = "object";
     ListView lifestylelv;
-    List<String> lifestyleStringDataFromParse;
+    List<String> lifestyleStringDataFromParseques;
+    List<String> lifestyleStringDataFromParseans;
     List<ParseObject> ob;
 
     @Override
@@ -36,10 +37,11 @@ public class LifestyleFragment extends Fragment implements AdapterView.OnItemCli
 
 //        parse data
 
-        lifestyleStringDataFromParse = new ArrayList<String>();
+        lifestyleStringDataFromParseques = new ArrayList<String>();
+        lifestyleStringDataFromParseans = new ArrayList<String>();
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "MustKnowLifestyle");
-        query.orderByDescending("createdAt");
+        query.orderByAscending("createdAt");
         try {
             ob = query.find();
         } catch (ParseException e) {
@@ -47,13 +49,14 @@ public class LifestyleFragment extends Fragment implements AdapterView.OnItemCli
             e.printStackTrace();
         }
         for (ParseObject country : ob) {
-            lifestyleStringDataFromParse.add((String) country.get("mustknowlifestyle"));
+            lifestyleStringDataFromParseques.add((String) country.get("mustknowlifestyleques"));
+            lifestyleStringDataFromParseans.add((String) country.get("mustknowlifestyleans"));
 
 
         }
 
         lifestylelv = (ListView) rootView.findViewById(R.id.LifestylelistView);
-        lifestylelv.setAdapter(new MyAdapterLifestyleMustKnow(lifestyleStringDataFromParse));
+        lifestylelv.setAdapter(new MyAdapterLifestyleMustKnow(lifestyleStringDataFromParseques,lifestyleStringDataFromParseans));
         lifestylelv.setOnItemClickListener(this);
         return rootView;
 
@@ -69,20 +72,23 @@ public class LifestyleFragment extends Fragment implements AdapterView.OnItemCli
 }
 
 class MyAdapterLifestyleMustKnow extends BaseAdapter {
-    List<String> LMK;
-    MyAdapterLifestyleMustKnow(List<String> list){
-        this.LMK=list;
+    List<String> LMKques;
+    List<String> LMKans;
+    MyAdapterLifestyleMustKnow(List<String> list,List<String> list1){
+        this.LMKques=list;
+        this.LMKans=list1;
+
     }
 
 
     @Override
     public int getCount() {
-        return LMK.size();
+        return LMKques.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return LMK.get(position);
+        return LMKques.get(position);
     }
 
     @Override
@@ -94,8 +100,10 @@ class MyAdapterLifestyleMustKnow extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         convertView = inflater.inflate(R.layout.lifestyle_mustknow_row, null);
-        TextView textView = (TextView) convertView.findViewById(R.id.lifestyle_mustknow_row_textview);
-        textView.setText(LMK.get(position));
+        TextView textView = (TextView) convertView.findViewById(R.id.lifestyle_mustknow_row_textview_ques);
+        TextView textViewans = (TextView) convertView.findViewById(R.id.lifestyle_mustknow_row_textview_ans);
+        textView.setText(LMKques.get(position));
+        textViewans.setText(LMKans.get(position));
         return convertView;
     }
 }

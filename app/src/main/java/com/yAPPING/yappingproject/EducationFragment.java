@@ -21,7 +21,8 @@ import java.util.List;
 public class EducationFragment extends Fragment implements AdapterView.OnItemClickListener {
     //public static final String ARG_OBJECT = "object";
     ListView edulv;
-    List<String> eduStringDataFromParse;
+    List<String> eduStringDataFromParseques;
+    List<String> eduStringDataFromParseans;
     List<ParseObject> ob;
 
     @Override
@@ -36,10 +37,12 @@ public class EducationFragment extends Fragment implements AdapterView.OnItemCli
 
 //        parse data
 
-        eduStringDataFromParse = new ArrayList<String>();
+        eduStringDataFromParseques = new ArrayList<String>();
+        eduStringDataFromParseans = new ArrayList<String>();
+
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "MustKnowEdu");
-        query.orderByDescending("createdAt");
+        query.orderByAscending("createdAt");
         try {
             ob = query.find();
         } catch (ParseException e) {
@@ -47,8 +50,8 @@ public class EducationFragment extends Fragment implements AdapterView.OnItemCli
             e.printStackTrace();
         }
         for (ParseObject country : ob) {
-            eduStringDataFromParse.add((String) country.get("mustknowedu"));
-
+            eduStringDataFromParseques.add((String) country.get("mustknoweduques"));
+            eduStringDataFromParseans.add((String) country.get("mustknoweduans"));
 
         }
 
@@ -65,7 +68,7 @@ public class EducationFragment extends Fragment implements AdapterView.OnItemCli
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         edulv = (ListView) view.findViewById(R.id.EdulistView);
-        edulv.setAdapter(new MyAdapterEduMustKnow(eduStringDataFromParse));
+        edulv.setAdapter(new MyAdapterEduMustKnow(eduStringDataFromParseques,eduStringDataFromParseans));
         edulv.setOnItemClickListener(this);
 
 
@@ -78,20 +81,23 @@ public class EducationFragment extends Fragment implements AdapterView.OnItemCli
 }
 
 class MyAdapterEduMustKnow extends BaseAdapter{
-    List<String> EMK;
-    MyAdapterEduMustKnow(List<String> list){
-        this.EMK=list;
+    List<String> EMKques;
+    List<String> EMKans;
+    MyAdapterEduMustKnow(List<String> list,List<String> list1){
+        this.EMKques=list;
+        this.EMKans=list1;
+
     }
 
 
     @Override
     public int getCount() {
-        return EMK.size();
+        return EMKques.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return EMK.get(position);
+        return EMKques.get(position);
     }
 
     @Override
@@ -103,8 +109,10 @@ class MyAdapterEduMustKnow extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         convertView = inflater.inflate(R.layout.edu_mustknow_row, null);
-        TextView textView = (TextView) convertView.findViewById(R.id.edu_mustknow_row_textview);
-        textView.setText(EMK.get(position));
+        TextView textView = (TextView) convertView.findViewById(R.id.edu_mustknow_row_textview_ques);
+        TextView textViewans = (TextView) convertView.findViewById(R.id.edu_mustknow_row_textview_ans);
+        textView.setText(EMKques.get(position));
+        textViewans.setText(EMKans.get(position));
         return convertView;
     }
 }
